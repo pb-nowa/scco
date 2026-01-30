@@ -36,7 +36,7 @@ main {
 }
 
 .section-muted {
-  background: rgba(107, 124, 77, 0.08);
+  background: var(--color-accent-08);
 }
 
 .stack > * + * {
