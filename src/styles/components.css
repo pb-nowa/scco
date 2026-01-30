@@ -1,10 +1,10 @@
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 10;
   width: 100%;
-  background: var(--color-bg);
+  background: transparent;
 }
 
 .header-inner {
@@ -58,7 +58,7 @@
 }
 
 .hero {
-  padding-top: calc(var(--space-9) + var(--space-5));
+  padding-top: 0;
   padding-bottom: var(--space-9);
   position: relative;
   overflow: hidden;
@@ -70,6 +70,7 @@
   grid-template-columns: repeat(12, 1fr);
   position: relative;
   min-height: clamp(520px, 70vh, 760px);
+  padding-top: 1.25rem;
 }
 
 .hero-left {
@@ -83,7 +84,8 @@
 .hero-title {
   margin: 0;
   font-family: var(--font-serif);
-  font-size: clamp(2.8rem, 6vw + 1rem, 6.8rem);
+  font-size: clamp(3.5rem, 9vw, 12rem);
+  font-weight: 300;
   line-height: 0.9;
   color: var(--color-accent);
   letter-spacing: 0.02em;
@@ -154,15 +156,15 @@
 
 .hero-cta span:last-child {
   position: relative;
-  padding-right: var(--space-2);
+  padding: 0 var(--space-1);
 }
 
 .hero-cta span:last-child::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -0.15em;
-  height: 0.35em;
+  bottom: -0.1em;
+  height: 0.7em;
   width: 100%;
   background: var(--color-highlight);
   z-index: -1;
@@ -177,7 +179,7 @@
   opacity: 0.4;
   left: 50%;
   top: 50%;
-  transform: translate(-40%, -50%);
+  transform: translate(-50%, -50%);
   z-index: 0;
 }
 
@@ -259,7 +261,7 @@
     width: clamp(280px, 70vw, 520px);
     height: clamp(280px, 70vw, 520px);
     left: 50%;
-    top: 35%;
+    top: 50%;
     transform: translate(-50%, -50%);
     opacity: 0.25;
   }

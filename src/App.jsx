@@ -1,3 +1,5 @@
+import LinkCta from "./LinkCta";
+
 const upcomingConcerts = [
   {
     title: "Opening Night: Echoes of the Shore",
@@ -71,12 +73,7 @@ function App() {
                   <span>December 2026</span>
                 </div>
               </div>
-              <a className="hero-cta" href="#concerts">
-                <span className="hero-cta-icon" aria-hidden="true">
-                  →
-                </span>
-                <span>Get concert updates</span>
-              </a>
+              <LinkCta href="#concerts">Get concert updates</LinkCta>
             </div>
             <div className="hero-circle" aria-hidden="true" />
           </div>
