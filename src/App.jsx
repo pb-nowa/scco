@@ -42,58 +42,43 @@ function App() {
     <div className="page">
       <header className="site-header">
         <div className="container header-inner">
-          <div className="logo">
-            <span className="logo-mark" aria-hidden="true">
-              SC
-            </span>
-            <div>
-              <p className="logo-title">Shoal Circle</p>
-              <p className="logo-subtitle">Chamber Orchestra</p>
-            </div>
-          </div>
           <nav className="site-nav" aria-label="Primary">
-            <a href="#concerts">Concerts</a>
-            <a href="#past-concerts">Past Concerts</a>
+            <a href="#about">About</a>
+            <a href="#concerts">Upcoming</a>
+            <a href="#contact">Contact</a>
           </nav>
         </div>
       </header>
 
       <main>
-        <section className="hero section">
+        <section className="hero section" id="about">
           <div className="container hero-grid">
-            <div className="stack">
-              <p className="eyebrow">Shoal Circle Chamber Orchestra</p>
-              <h1>
-                Intimate performances, expansive sound, and a modern approach
-                to chamber music.
+            <div className="hero-left">
+              <h1 className="hero-title">
+                <span>SHOAL</span>
+                <span>CIRCLE</span>
+                <span>CHAMBER</span>
+                <span>ORCHESTRA</span>
               </h1>
-              <p className="lead">
-                We bring artists and audiences together in spaces that feel
-                close, thoughtful, and alive. Discover curated programs,
-                emerging voices, and timeless masterpieces.
-              </p>
-              <div className="cta-row">
-                <a className="btn btn-primary" href="#concerts">
-                  View upcoming concerts
-                </a>
-                <a className="btn btn-secondary" href="#past-concerts">
-                  Explore past programs
-                </a>
+              <p className="hero-location">SAN MATEO, CA</p>
+              <p className="hero-tagline">Find your inner musician.</p>
+            </div>
+            <div className="hero-right">
+              <div className="hero-upcoming">
+                <p className="hero-label">Upcoming concert</p>
+                <div className="hero-event">
+                  <span>Palo Alto, CA</span>
+                  <span>December 2026</span>
+                </div>
               </div>
+              <a className="hero-cta" href="#concerts">
+                <span className="hero-cta-icon" aria-hidden="true">
+                  →
+                </span>
+                <span>Get concert updates</span>
+              </a>
             </div>
-            <div className="hero-card stack">
-              <p className="eyebrow">Season 2026</p>
-              <h2 className="hero-card-title">An earth-toned season</h2>
-              <p>
-                Expect calm, immersive performances with a focus on color,
-                texture, and collaborative artistry.
-              </p>
-              <ul className="key-list">
-                <li>Three signature concerts</li>
-                <li>Guest composers and soloists</li>
-                <li>Community-led conversations</li>
-              </ul>
-            </div>
+            <div className="hero-circle" aria-hidden="true" />
           </div>
         </section>
 
@@ -143,7 +128,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="site-footer">
+      <footer className="site-footer" id="contact">
         <div className="container footer-grid">
           <div>
             <p className="footer-title">Shoal Circle Chamber Orchestra</p>
