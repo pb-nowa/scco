@@ -1,3 +1,5 @@
+import "./SiteHeader.css";
+
 const SiteHeader = () => (
   <header className="site-header">
     <div className="layout__container site-header__inner">

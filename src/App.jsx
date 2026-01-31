@@ -1,9 +1,9 @@
-import FeatureSection from "./sections/FeatureSection";
-import HeroSection from "./sections/HeroSection";
-import PastConcertsShowcase from "./sections/PastConcertsShowcase";
-import RecordingSection from "./sections/RecordingSection";
-import SiteFooter from "./sections/SiteFooter";
-import SiteHeader from "./sections/SiteHeader";
+import FeatureSection from "./sections/FeatureSection/FeatureSection";
+import HeroSection from "./sections/HeroSection/HeroSection";
+import PastConcertsShowcase from "./sections/PastConcertsShowcase/PastConcertsShowcase";
+import RecordingSection from "./sections/RecordingSection/RecordingSection";
+import SiteFooter from "./sections/SiteFooter/SiteFooter";
+import SiteHeader from "./sections/SiteHeader/SiteHeader";
 
 function App() {
   return (

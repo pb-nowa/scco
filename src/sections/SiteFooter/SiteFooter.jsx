@@ -1,4 +1,5 @@
-import LinkCta from "../components/LinkCta/LinkCta";
+import LinkCta from "../../components/LinkCta/LinkCta";
+import "./SiteFooter.css";
 
 const SiteFooter = () => (
   <footer className="site-footer" id="contact">

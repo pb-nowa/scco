@@ -1,0 +1,35 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  background: transparent;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-4);
+  padding: var(--space-6) 0;
+}
+
+.site-header__nav {
+  display: flex;
+  gap: var(--space-4);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.site-header__nav-link {
+  padding: var(--space-2) 0;
+}
+
+@media (max-width: 700px) {
+  .site-header__nav {
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+}

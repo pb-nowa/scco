@@ -1,3 +1,5 @@
+import "./PastConcertsShowcase.css";
+
 const posters = [
   {
     title: "Monsters Symphonic",

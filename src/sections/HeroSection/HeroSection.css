@@ -1,0 +1,123 @@
+.hero {
+  background: var(--color-bg);
+  padding-top: 0;
+  padding-bottom: var(--space-9);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__grid {
+  display: grid;
+  gap: var(--space-7);
+  grid-template-columns: repeat(12, 1fr);
+  position: relative;
+  min-height: clamp(520px, 70vh, 760px);
+  padding-top: 1.25rem;
+}
+
+.hero__left {
+  grid-column: 1 / span 7;
+  display: grid;
+  align-content: center;
+  gap: var(--space-4);
+  z-index: 1;
+}
+
+.hero__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(3.5rem, 9vw, 12rem);
+  font-weight: 300;
+  line-height: 0.9;
+  color: var(--color-accent);
+  letter-spacing: 0.02em;
+}
+
+.hero__title span {
+  display: block;
+}
+
+.hero__location {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.hero__tagline {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.4vw + 0.6rem, 2.4rem);
+  color: var(--color-accent);
+}
+
+.hero__right {
+  grid-column: 9 / span 4;
+  display: grid;
+  gap: var(--space-5);
+  justify-items: end;
+  align-content: center;
+  text-align: right;
+  z-index: 1;
+}
+
+.hero__upcoming {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.hero__label {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+}
+
+.hero__event {
+  display: flex;
+  gap: var(--space-6);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero__circle {
+  position: absolute;
+  width: clamp(360px, 46vw, 620px);
+  height: clamp(360px, 46vw, 620px);
+  border: 1px solid var(--color-ink);
+  border-radius: 999px;
+  opacity: 0.4;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+@media (max-width: 900px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .hero__left,
+  .hero__right {
+    grid-column: 1 / -1;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .hero__event {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .hero__circle {
+    width: clamp(280px, 70vw, 520px);
+    height: clamp(280px, 70vw, 520px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.25;
+  }
+}

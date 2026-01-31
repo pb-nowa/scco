@@ -1,4 +1,5 @@
-import LinkCta from "../components/LinkCta/LinkCta";
+import LinkCta from "../../components/LinkCta/LinkCta";
+import "./HeroSection.css";
 
 const HeroSection = () => (
   <section className="hero section" id="about">

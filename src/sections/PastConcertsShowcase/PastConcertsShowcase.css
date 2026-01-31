@@ -1,0 +1,111 @@
+.past-concerts {
+  background: #ffffff;
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-9);
+  overflow: visible;
+  position: relative;
+}
+
+.past-concerts__media {
+  position: relative;
+  padding: 0 var(--space-8);
+  margin-top: var(--space-6);
+  min-height: clamp(280px, 45vh, 520px);
+  z-index: 1;
+  overflow: visible;
+}
+
+.past-concerts__bg-wrap {
+  position: absolute;
+  inset: 0;
+  padding: 0 var(--space-8);
+  pointer-events: none;
+  z-index: 0;
+  margin: 0 var(--space-8);
+}
+
+.past-concerts__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.28;
+  filter: saturate(0.9);
+}
+
+.past-concerts__content {
+  position: relative;
+  top: -100px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  overflow: visible;
+}
+
+.past-concerts__title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(3.2rem, 12vw, 12rem);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 0.85;
+  color: var(--color-highlight);
+}
+
+.past-concerts__title span {
+  display: block;
+}
+
+.past-concerts__posters {
+  display: flex;
+  gap: var(--space-5);
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin-top: var(--space-6);
+  position: relative;
+  z-index: 1;
+}
+
+.past-concerts__poster {
+  flex: 1 1 200px;
+  min-width: 180px;
+  max-width: 240px;
+  aspect-ratio: 9 / 16;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.past-concerts__poster-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .past-concerts__posters {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 700px) {
+  .past-concerts__content {
+    padding-top: var(--space-4);
+  }
+
+  .past-concerts__title {
+    font-size: clamp(2.8rem, 14vw, 5rem);
+  }
+
+  .past-concerts__posters {
+    margin-top: var(--space-5);
+  }
+}

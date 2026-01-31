@@ -1,4 +1,5 @@
-import FeatureCard from "../components/FeatureCard/FeatureCard";
+import FeatureCard from "../../components/FeatureCard/FeatureCard";
+import "./FeatureSection.css";
 
 const FeatureSection = () => (
   <section className="section feature" id="music">

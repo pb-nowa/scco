@@ -1,3 +1,5 @@
+import "./RecordingSection.css";
+
 const RecordingSection = () => (
   <section className="section recording">
     <div className="layout__container recording__container">
