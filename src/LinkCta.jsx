@@ -1,5 +1,5 @@
-const LinkCta = ({ href, children }) => (
-  <a className="hero-cta" href={href}>
+const LinkCta = ({ href, children, className = "" }) => (
+  <a className={`hero-cta ${className}`.trim()} href={href}>
     <span className="hero-cta-icon" aria-hidden="true">
       →
     </span>

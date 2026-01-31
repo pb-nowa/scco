@@ -1,4 +1,5 @@
 import LinkCta from "./LinkCta";
+import FeatureCard from "./FeatureCard";
 import { Cloudinary } from '@cloudinary/url-gen';
 import { auto } from '@cloudinary/url-gen/actions/resize';
 import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
@@ -109,35 +110,19 @@ function App() {
           </div>
           <div className="container feature-grid">
             <div className="feature-visual">
-              <article className="feature-card">
-                <p className="feature-location">PALO ALTO, CA</p>
-                <p className="feature-date">DECEMBER 2026</p>
-                <p className="feature-venue">PALO ALTO ARTS CENTER</p>
-                <p className="feature-details">
-                  The Shoal Circle Chamber Orchestra will be presenting their
-                  2026 concert at the Palo Alto Arts Center in Palo Alto,
-                  California.
-                </p>
-                <p className="feature-details">
-                  Program and concert title are TBD. Details to RSVP will be
-                  released in October 2026.
-                </p>
-                <a className="feature-cta" href="#concerts">
-                  Get concert updates
-                </a>
-                <div className="feature-quotes">
-                  <div>
-                    <p>“Wow this sounds like music”</p>
-                    <p className="feature-quote-author">- Preston's mom</p>
-                  </div>
-                  <div>
-                    <p>“The food is really good”</p>
-                    <p className="feature-quote-author">
-                      - anonymous concert attendee
-                    </p>
-                  </div>
+              <FeatureCard />
+              <div className="feature-quotes">
+                <div>
+                  <p>“Wow this sounds like music”</p>
+                  <p className="feature-quote-author">- Preston's mom</p>
                 </div>
-              </article>
+                <div>
+                  <p>“The food is really good”</p>
+                  <p className="feature-quote-author">
+                    - anonymous concert attendee
+                  </p>
+                </div>
+              </div>
             </div>
             <img
               className="feature-photo"
