@@ -1,0 +1,22 @@
+---
+description: Frontend styling and component conventions
+alwaysApply: true
+---
+# Frontend Style Guide
+
+- Prefer design system CSS variables from `src/styles/tokens.css`.
+- Use BEM class naming: `block__element--modifier`.
+- Reuse existing CSS classes for shared styles before adding new ones.
+- Reuse common components when possible; avoid duplicate patterns.
+- New UI sections go in their own file.
+- New components go in their own file.
+- Keep component files under ~200 lines; split into smaller components when it makes sense.
+
+## Examples
+```css
+/* ✅ use tokens and BEM */
+.hero__title {
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
+}
+```
