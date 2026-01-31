@@ -1,5 +1,6 @@
 import LinkCta from "./LinkCta";
 import FeatureCard from "./FeatureCard";
+import PastConcertsShowcase from "./PastConcertsShowcase";
 import { Cloudinary } from '@cloudinary/url-gen';
 import { auto } from '@cloudinary/url-gen/actions/resize';
 import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
@@ -23,24 +24,6 @@ const upcomingConcerts = [
     date: "December 12, 2026",
     venue: "North Point Chapel",
     details: "Intimate chamber works by candlelight.",
-  },
-];
-
-const pastConcerts = [
-  {
-    title: "Spring Nocturnes",
-    date: "April 2026",
-    highlight: "Mozart and Florence Price in dialogue.",
-  },
-  {
-    title: "New Horizons",
-    date: "February 2026",
-    highlight: "Contemporary chamber pieces and world premieres.",
-  },
-  {
-    title: "The Art of the Trio",
-    date: "November 2025",
-    highlight: "A focused program for piano, violin, and cello.",
   },
 ];
 
@@ -145,50 +128,7 @@ function App() {
           </div>
         </section>
 
-        <section id="concerts" className="section">
-          <div className="layout__container layout__stack--lg">
-            <div>
-              <p className="section__eyebrow">Concerts</p>
-              <h2 className="section__title">Upcoming season highlights</h2>
-              <p className="section__lead">
-                Placeholder dates and venues below. Replace these with your
-                official season announcement.
-              </p>
-            </div>
-            <div className="layout__grid">
-              {upcomingConcerts.map((concert) => (
-                <article className="card" key={concert.title}>
-                  <p className="card__date">{concert.date}</p>
-                  <h3>{concert.title}</h3>
-                  <p className="card__venue">{concert.venue}</p>
-                  <p>{concert.details}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="past-concerts" className="section section--muted">
-          <div className="layout__container layout__stack--lg">
-            <div>
-              <p className="section__eyebrow">Past Concerts</p>
-              <h2 className="section__title">Recent performances</h2>
-              <p className="section__lead">
-                A snapshot of programs from previous seasons. Add links to
-                recordings or galleries as they become available.
-              </p>
-            </div>
-            <div className="layout__grid layout__grid--tight">
-              {pastConcerts.map((concert) => (
-                <article className="card card--compact" key={concert.title}>
-                  <p className="card__date">{concert.date}</p>
-                  <h3>{concert.title}</h3>
-                  <p className="card__venue">{concert.highlight}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        <PastConcertsShowcase />
       </main>
 
       <footer className="site-footer" id="contact">
