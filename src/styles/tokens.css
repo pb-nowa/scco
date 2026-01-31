@@ -3,14 +3,14 @@
 
   --color-ink: hsl(0 55% 9%);
   --color-muted: hsl(33 10% 40%);
-  --color-bg: hsl(348 100% 76%);
+  --color-bg: #ff8585;
   --color-surface: hsl(0 0% 100%);
   --color-border: hsl(33 21% 84%);
   --color-accent: hsl(195 85% 26%);
   --color-accent-dark: hsl(82 27% 29%);
   --color-accent-secondary: hsl(348 100% 56%);
   --color-highlight: hsl(24 100% 51%);
-  --color-bg-90: hsl(348 100% 76% / 0.9);
+  --color-bg-90: #ff8585e6;
   --color-accent-12: hsl(195 85% 26% / 0.12);
   --color-accent-08: hsl(195 85% 26% / 0.08);
   --color-ink-08: hsl(0 55% 9% / 0.08);
