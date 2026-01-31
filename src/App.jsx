@@ -1,4 +1,8 @@
 import LinkCta from "./LinkCta";
+import { Cloudinary } from '@cloudinary/url-gen';
+import { auto } from '@cloudinary/url-gen/actions/resize';
+import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity';
+import { AdvancedImage } from '@cloudinary/react';
 
 const upcomingConcerts = [
   {
@@ -40,6 +44,13 @@ const pastConcerts = [
 ];
 
 function App() {
+  const cld = new Cloudinary({ cloud: { cloudName: 'dhjttb9y2' } });
+  const img = cld
+    .image('IMG_1376_cyswwz')
+    .format('auto')
+    .quality('auto')
+    .resize(auto().gravity(autoGravity()).width(500).height(500));
+
   return (
     <div className="page">
       <header className="site-header">
@@ -76,6 +87,56 @@ function App() {
               <LinkCta href="#concerts">Get concert updates</LinkCta>
             </div>
             <div className="hero-circle" aria-hidden="true" />
+          </div>
+        </section>
+
+        <section className="section feature-section" id="music">
+          <div className="container feature-grid">
+            <div className="feature-copy">
+              <h2 className="feature-heading">
+                <span>LET'S</span>
+                <span>MAKE</span>
+                <span>SOME</span>
+                <span>MUSIC</span>
+              </h2>
+            </div>
+            <div className="feature-visual">
+              <div className="feature-bg" aria-hidden="true" />
+              <article className="feature-card">
+                <p className="feature-location">PALO ALTO, CA</p>
+                <p className="feature-date">DECEMBER 2026</p>
+                <p className="feature-venue">PALO ALTO ARTS CENTER</p>
+                <p className="feature-details">
+                  The Shoal Circle Chamber Orchestra will be presenting their
+                  2026 concert at the Palo Alto Arts Center in Palo Alto,
+                  California.
+                </p>
+                <p className="feature-details">
+                  Program and concert title are TBD. Details to RSVP will be
+                  released in October 2026.
+                </p>
+                <a className="feature-cta" href="#concerts">
+                  Get concert updates
+                </a>
+                <div className="feature-quotes">
+                  <div>
+                    <p>“Wow this sounds like music”</p>
+                    <p className="feature-quote-author">- Preston's mom</p>
+                  </div>
+                  <div>
+                    <p>“The food is really good”</p>
+                    <p className="feature-quote-author">
+                      - anonymous concert attendee
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <img
+              className="feature-photo"
+              src="https://res.cloudinary.com/dhjttb9y2/image/upload/v1769820664/IMG_1376_cyswwz.jpg"
+              alt="Shoal Circle Chamber Orchestra ensemble"
+            />
           </div>
         </section>
 
