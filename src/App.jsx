@@ -53,91 +53,91 @@ function App() {
     .resize(auto().gravity(autoGravity()).width(500).height(500));
 
   return (
-    <div className="page">
+    <div className="layout">
       <header className="site-header">
-        <div className="container header-inner">
-          <nav className="site-nav" aria-label="Primary">
-            <a href="#about">About</a>
-            <a href="#concerts">Upcoming</a>
-            <a href="#contact">Contact</a>
+        <div className="layout__container site-header__inner">
+          <nav className="site-header__nav" aria-label="Primary">
+            <a className="site-header__nav-link" href="#about">About</a>
+            <a className="site-header__nav-link" href="#concerts">Upcoming</a>
+            <a className="site-header__nav-link" href="#contact">Contact</a>
           </nav>
         </div>
       </header>
 
       <main>
         <section className="hero section" id="about">
-          <div className="container hero-grid">
-            <div className="hero-left">
-              <h1 className="hero-title">
+          <div className="layout__container hero__grid">
+            <div className="hero__left">
+              <h1 className="hero__title">
                 <span>SHOAL</span>
                 <span>CIRCLE</span>
                 <span>CHAMBER</span>
                 <span>ORCHESTRA</span>
               </h1>
-              <p className="hero-location">SAN MATEO, CA</p>
-              <p className="hero-tagline">Find your inner musician.</p>
+              <p className="hero__location">SAN MATEO, CA</p>
+              <p className="hero__tagline">Find your inner musician.</p>
             </div>
-            <div className="hero-right">
-              <div className="hero-upcoming">
-                <p className="hero-label">Upcoming concert</p>
-                <div className="hero-event">
+            <div className="hero__right">
+              <div className="hero__upcoming">
+                <p className="hero__label">Upcoming concert</p>
+                <div className="hero__event">
                   <span>Palo Alto, CA</span>
                   <span>December 2026</span>
                 </div>
               </div>
               <LinkCta href="#concerts">Get concert updates</LinkCta>
             </div>
-            <div className="hero-circle" aria-hidden="true" />
+            <div className="hero__circle" aria-hidden="true" />
           </div>
         </section>
 
-        <section className="section feature-section" id="music">
+        <section className="section feature" id="music">
           <img
-            className="feature-bg"
+            className="feature__bg"
             src="https://res.cloudinary.com/dhjttb9y2/image/upload/v1769820597/IMG_7130_mpifsr.jpg"
             alt=""
             aria-hidden="true"
           />
-          <div className="feature-heading-wrap">
-            <h2 className="feature-heading">
-              <span className="feature-heading-row feature-heading-row-wide">
+          <div className="feature__heading-wrap">
+            <h2 className="feature__heading">
+              <span className="feature__heading-row feature__heading-row--wide">
                 <span>LET'S</span>
                 <span>MAKE</span>
               </span>
-              <span className="feature-heading-row">SOME</span>
-              <span className="feature-heading-row">MUSIC</span>
+              <span className="feature__heading-row">SOME</span>
+              <span className="feature__heading-row">MUSIC</span>
             </h2>
           </div>
-          <div className="container feature-grid">
-            <div className="feature-visual">
+          <div className="layout__container feature__grid">
+            <div className="feature__visual">
               <FeatureCard />
-              <div className="feature-quotes">
+              <div className="feature__quotes">
                 <div>
                   <p>“Wow this sounds like music”</p>
-                  <p className="feature-quote-author">- Preston's mom</p>
+                  <p className="feature__quote-author">- Preston's mom</p>
                 </div>
                 <div>
                   <p>“The food is really good”</p>
-                  <p className="feature-quote-author">
+                  <p className="feature__quote-author">
                     - anonymous concert attendee
                   </p>
                 </div>
               </div>
             </div>
             <img
-              className="feature-photo"
+              className="feature__photo"
               src="https://res.cloudinary.com/dhjttb9y2/image/upload/v1769820664/IMG_1376_cyswwz.jpg"
               alt="Shoal Circle Chamber Orchestra ensemble"
             />
           </div>
         </section>
 
-        <section className="section feature-recording-section">
-          <div className="container feature-recording-container">
-            <div className="feature-recording">
-              <p className="feature-recording-title">Featured recording</p>
-              <div className="feature-recording-frame">
-                <div className="feature-recording-placeholder">
+        <section className="section recording">
+          <div className="layout__container recording__container">
+            <div className="recording__content">
+              <p className="recording__title">Featured recording</p>
+              <div className="recording__frame">
+                <div className="recording__placeholder">
                   SoundCloud embed placeholder
                 </div>
               </div>
@@ -146,21 +146,21 @@ function App() {
         </section>
 
         <section id="concerts" className="section">
-          <div className="container stack-lg">
+          <div className="layout__container layout__stack--lg">
             <div>
-              <p className="eyebrow">Concerts</p>
-              <h2 className="section-title">Upcoming season highlights</h2>
-              <p className="section-lead">
+              <p className="section__eyebrow">Concerts</p>
+              <h2 className="section__title">Upcoming season highlights</h2>
+              <p className="section__lead">
                 Placeholder dates and venues below. Replace these with your
                 official season announcement.
               </p>
             </div>
-            <div className="grid">
+            <div className="layout__grid">
               {upcomingConcerts.map((concert) => (
                 <article className="card" key={concert.title}>
-                  <p className="card-date">{concert.date}</p>
+                  <p className="card__date">{concert.date}</p>
                   <h3>{concert.title}</h3>
-                  <p className="card-venue">{concert.venue}</p>
+                  <p className="card__venue">{concert.venue}</p>
                   <p>{concert.details}</p>
                 </article>
               ))}
@@ -168,22 +168,22 @@ function App() {
           </div>
         </section>
 
-        <section id="past-concerts" className="section section-muted">
-          <div className="container stack-lg">
+        <section id="past-concerts" className="section section--muted">
+          <div className="layout__container layout__stack--lg">
             <div>
-              <p className="eyebrow">Past Concerts</p>
-              <h2 className="section-title">Recent performances</h2>
-              <p className="section-lead">
+              <p className="section__eyebrow">Past Concerts</p>
+              <h2 className="section__title">Recent performances</h2>
+              <p className="section__lead">
                 A snapshot of programs from previous seasons. Add links to
                 recordings or galleries as they become available.
               </p>
             </div>
-            <div className="grid grid-tight">
+            <div className="layout__grid layout__grid--tight">
               {pastConcerts.map((concert) => (
-                <article className="card card-compact" key={concert.title}>
-                  <p className="card-date">{concert.date}</p>
+                <article className="card card--compact" key={concert.title}>
+                  <p className="card__date">{concert.date}</p>
                   <h3>{concert.title}</h3>
-                  <p className="card-venue">{concert.highlight}</p>
+                  <p className="card__venue">{concert.highlight}</p>
                 </article>
               ))}
             </div>
@@ -192,22 +192,22 @@ function App() {
       </main>
 
       <footer className="site-footer" id="contact">
-        <div className="container footer-grid">
+        <div className="layout__container site-footer__grid">
           <div>
-            <p className="footer-title">Shoal Circle Chamber Orchestra</p>
-            <p className="footer-text">
+            <p className="site-footer__title">Shoal Circle Chamber Orchestra</p>
+            <p className="site-footer__text">
               A chamber orchestra centered on connection, clarity, and
               contemporary programming.
             </p>
           </div>
-          <div className="footer-block">
-            <p className="footer-label">Get in touch</p>
+          <div className="site-footer__block">
+            <p className="site-footer__label">Get in touch</p>
             <a href="mailto:info@shoalcirclechamberorchestra.org">
               info@shoalcirclechamberorchestra.org
             </a>
           </div>
-          <div className="footer-block">
-            <p className="footer-label">Follow along</p>
+          <div className="site-footer__block">
+            <p className="site-footer__label">Follow along</p>
             <a href="#">Instagram (placeholder)</a>
             <a href="#">YouTube (placeholder)</a>
           </div>

@@ -1,9 +1,9 @@
 const LinkCta = ({ href, children, className = "" }) => (
-  <a className={`hero-cta ${className}`.trim()} href={href}>
-    <span className="hero-cta-icon" aria-hidden="true">
+  <a className={`cta ${className}`.trim()} href={href}>
+    <span className="cta__icon" aria-hidden="true">
       →
     </span>
-    <span>{children}</span>
+    <span className="cta__text">{children}</span>
   </a>
 );
 
