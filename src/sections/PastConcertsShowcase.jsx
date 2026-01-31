@@ -29,14 +29,13 @@ const PastConcertsShowcase = () => (
   <section id="past-concerts" className="section past-concerts">
     <div className="past-concerts__bg-wrap">
       <img
-          className="past-concerts__bg"
-          src="https://res.cloudinary.com/dhjttb9y2/image/upload/v1769881017/IMG_7146_clajal.jpg"
-          alt=""
-          aria-hidden="true"
-        />
-      </div>
+        className="past-concerts__bg"
+        src="https://res.cloudinary.com/dhjttb9y2/image/upload/v1769881017/IMG_7146_clajal.jpg"
+        alt=""
+        aria-hidden="true"
+      />
+    </div>
     <div className="past-concerts__media">
-      
       <div className="layout__container past-concerts__content">
         <h2 className="past-concerts__title">
           <span>Past</span>
