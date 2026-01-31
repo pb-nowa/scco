@@ -39,7 +39,7 @@ const PastConcertsShowcase = () => (
     </div>
     <div className="past-concerts__media">
       <div className="layout__container past-concerts__content">
-        <h2 className="past-concerts__title">
+        <h2 className="past-concerts__title section-title section-title--past">
           <span>Past</span>
           <span>Concerts</span>
         </h2>

@@ -47,14 +47,8 @@
 }
 
 .past-concerts__title {
-  margin: 0;
-  font-family: var(--font-sans);
-  font-size: clamp(3.2rem, 12vw, 12rem);
-  font-weight: 300;
-  text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: 0.85;
-  color: var(--color-highlight);
 }
 
 .past-concerts__title span {
@@ -99,10 +93,6 @@
 @media (max-width: 700px) {
   .past-concerts__content {
     padding-top: var(--space-4);
-  }
-
-  .past-concerts__title {
-    font-size: clamp(2.8rem, 14vw, 5rem);
   }
 
   .past-concerts__posters {

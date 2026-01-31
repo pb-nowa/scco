@@ -10,7 +10,7 @@ const FeatureSection = () => (
       aria-hidden="true"
     />
     <div className="feature__heading-wrap">
-      <h2 className="feature__heading">
+      <h2 className="feature__heading section-title section-title--feature">
         <span className="feature__heading-row feature__heading-row--wide">
           <span>LET'S</span>
           <span>MAKE</span>

@@ -78,3 +78,28 @@ main {
   color: var(--color-muted);
   max-width: 60ch;
 }
+
+.section-title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(4.5rem, 11vw, 10rem);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.section-title--feature {
+  color: var(--color-accent-secondary);
+}
+
+.section-title--past {
+  color: var(--color-highlight);
+  margin-left: calc(50% - 50vw);
+}
+
+@media (max-width: 700px) {
+  .section-title {
+    font-size: clamp(3.4rem, 14vw, 5.2rem);
+  }
+}
