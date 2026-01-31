@@ -132,6 +132,19 @@ function App() {
           </div>
         </section>
 
+        <section className="section feature-recording-section">
+          <div className="container feature-recording-container">
+            <div className="feature-recording">
+              <p className="feature-recording-title">Featured recording</p>
+              <div className="feature-recording-frame">
+                <div className="feature-recording-placeholder">
+                  SoundCloud embed placeholder
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="concerts" className="section">
           <div className="container stack-lg">
             <div>
