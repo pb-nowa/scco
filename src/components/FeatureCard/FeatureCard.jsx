@@ -1,4 +1,5 @@
-import LinkCta from "./LinkCta";
+import LinkCta from "../LinkCta/LinkCta";
+import "./FeatureCard.css";
 
 const FeatureCard = () => (
   <article className="feature-card">

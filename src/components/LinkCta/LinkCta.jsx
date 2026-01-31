@@ -1,3 +1,5 @@
+import "./LinkCta.css";
+
 const LinkCta = ({ href, children, className = "" }) => (
   <a className={`cta ${className}`.trim()} href={href}>
     <span className="cta__icon" aria-hidden="true">

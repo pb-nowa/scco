@@ -1,0 +1,65 @@
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.cta__icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.cta__text {
+  position: relative;
+  padding: 0 var(--space-1);
+}
+
+.cta__text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0.7em;
+  width: 100%;
+  background: var(--color-highlight);
+  z-index: -1;
+}
+
+.cta--feature {
+  margin-top: var(--space-5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--space-2);
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: var(--font-size-lg);
+}
+
+.cta--footer {
+  font-weight: 600;
+  display: inline-flex;
+  background: none;
+  padding: 0;
+}
+
+.cta--footer .cta__text {
+  display: inline-block;
+  padding: 0 var(--space-1);
+  background-image: linear-gradient(
+    transparent calc(100% - 0.7em),
+    var(--color-highlight) 0
+  );
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+}
+
+.cta--footer .cta__text::after {
+  content: none;
+}
