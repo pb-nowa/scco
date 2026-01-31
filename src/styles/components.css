@@ -299,6 +299,8 @@
 
 .recording__content {
   width: min(520px, 100%);
+  position: relative;
+  margin-top: var(--space-6);
 }
 
 .recording {
@@ -313,10 +315,13 @@
 }
 
 .recording__title {
+  position: absolute;
+  top: -34px;
+  left: -12px;
   margin: 0 0 var(--space-3);
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: var(--color-highlight);
 }
 
