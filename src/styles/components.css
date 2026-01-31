@@ -58,6 +58,7 @@
 }
 
 .hero {
+  background: var(--color-bg);
   padding-top: 0;
   padding-bottom: var(--space-9);
   position: relative;
@@ -186,6 +187,7 @@
 .feature-section {
   position: relative;
   overflow: visible;
+  background: var(--color-bg);
 }
 
 .feature-heading-wrap {
@@ -325,11 +327,10 @@
 
 .feature-photo {
   position: absolute;
-  left: 0;
+  left: calc(50% - 50vw);
   bottom: var(--space-5);
-  width: clamp(280px, 40vw, 460px);
-  height: clamp(220px, 32vw, 360px);
-  object-fit: cover;
+  width: 55vw;
+  height: auto;
   box-shadow: var(--shadow-soft);
   z-index: 1;
 }
@@ -432,10 +433,10 @@
   }
 
   .feature-photo {
-    position: static;
-    width: 100%;
+    position: relative;
+    width: 100vw;
     height: auto;
-    margin-top: var(--space-5);
+    margin: var(--space-5) calc(50% - 50vw) 0;
   }
 }
 

@@ -7,9 +7,13 @@
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background: var(--color-bg);
+  background: #ffffff;
   color: var(--color-ink);
   line-height: 1.6;
+}
+
+.page {
+  background: #ffffff;
 }
 
 img {
