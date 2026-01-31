@@ -132,25 +132,53 @@ function App() {
       </main>
 
       <footer className="site-footer" id="contact">
-        <div className="layout__container site-footer__grid">
-          <div>
-            <p className="site-footer__title">Shoal Circle Chamber Orchestra</p>
-            <p className="site-footer__text">
-              A chamber orchestra centered on connection, clarity, and
-              contemporary programming.
+        <div className="layout__container site-footer__top">
+          <div className="site-footer__intro">
+            <h2 className="site-footer__heading">Let's make some music!</h2>
+            <p className="site-footer__message">
+              We'd love to hear from you! Reach out for inquiries about joining
+              the orchestra or future concerts.
             </p>
+            <LinkCta
+              href="mailto:info@shoalcirclechamberorchestra.org"
+              className="cta--footer"
+            >
+              CONTACT US
+            </LinkCta>
           </div>
-          <div className="site-footer__block">
-            <p className="site-footer__label">Get in touch</p>
-            <a href="mailto:info@shoalcirclechamberorchestra.org">
-              info@shoalcirclechamberorchestra.org
+        </div>
+        <div className="layout__container site-footer__bottom">
+          <div className="site-footer__social">
+            <span className="site-footer__social-label">
+              Follow us on social media!
+            </span>
+            <a className="site-footer__link" href="#">
+              Instagram
+            </a>
+            <span className="site-footer__separator" aria-hidden="true">
+              |
+            </span>
+            <a className="site-footer__link" href="#">
+              YouTube
+            </a>
+            <span className="site-footer__separator" aria-hidden="true">
+              |
+            </span>
+            <a className="site-footer__link" href="#">
+              SoundCloud
             </a>
           </div>
-          <div className="site-footer__block">
-            <p className="site-footer__label">Follow along</p>
-            <a href="#">Instagram (placeholder)</a>
-            <a href="#">YouTube (placeholder)</a>
-          </div>
+          <nav className="site-footer__nav" aria-label="Footer">
+            <a className="site-footer__nav-link" href="#about">
+              About
+            </a>
+            <a className="site-footer__nav-link" href="#concerts">
+              Upcoming
+            </a>
+            <a className="site-footer__nav-link" href="#contact">
+              Contact
+            </a>
+          </nav>
         </div>
       </footer>
     </div>
