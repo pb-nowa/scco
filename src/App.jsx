@@ -91,17 +91,24 @@ function App() {
         </section>
 
         <section className="section feature-section" id="music">
-          <div className="container feature-grid">
-            <div className="feature-copy">
-              <h2 className="feature-heading">
+          <img
+            className="feature-bg"
+            src="https://res.cloudinary.com/dhjttb9y2/image/upload/v1769820597/IMG_7130_mpifsr.jpg"
+            alt=""
+            aria-hidden="true"
+          />
+          <div className="feature-heading-wrap">
+            <h2 className="feature-heading">
+              <span className="feature-heading-row feature-heading-row-wide">
                 <span>LET'S</span>
                 <span>MAKE</span>
-                <span>SOME</span>
-                <span>MUSIC</span>
-              </h2>
-            </div>
+              </span>
+              <span className="feature-heading-row">SOME</span>
+              <span className="feature-heading-row">MUSIC</span>
+            </h2>
+          </div>
+          <div className="container feature-grid">
             <div className="feature-visual">
-              <div className="feature-bg" aria-hidden="true" />
               <article className="feature-card">
                 <p className="feature-location">PALO ALTO, CA</p>
                 <p className="feature-date">DECEMBER 2026</p>

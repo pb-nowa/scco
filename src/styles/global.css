@@ -32,7 +32,7 @@ main {
 }
 
 .section {
-  padding: var(--space-8) 0;
+  padding: var(--space-4) 0;
 }
 
 .section-muted {
@@ -73,10 +73,4 @@ main {
 .section-lead {
   color: var(--color-muted);
   max-width: 60ch;
-}
-
-@media (min-width: 900px) {
-  .section {
-    padding: var(--space-9) 0;
-  }
 }

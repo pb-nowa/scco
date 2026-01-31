@@ -185,7 +185,14 @@
 
 .feature-section {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+}
+
+.feature-heading-wrap {
+  width: 100%;
+  position: relative;
+  margin-bottom: var(--space-6);
+  overflow: visible;
 }
 
 .feature-grid {
@@ -194,28 +201,36 @@
   gap: var(--space-7);
   position: relative;
   min-height: clamp(520px, 70vh, 760px);
-}
-
-.feature-copy {
-  grid-column: 1 / span 6;
   z-index: 1;
-  display: grid;
-  align-content: start;
 }
 
 .feature-heading {
   margin: 0;
-  font-family: var(--font-serif);
-  font-size: clamp(3.5rem, 7vw, 8rem);
+  font-family: var(--font-sans);
+  font-size: clamp(4.5rem, 11vw, 10rem);
   font-weight: 300;
   line-height: 0.9;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--color-accent-secondary);
+  position: relative;
+  z-index: 1;
 }
 
-.feature-heading span {
+.feature-heading-row {
   display: block;
+}
+
+.feature-heading-row span {
+  display: block;
+}
+
+.feature-heading-row-wide {
+  width: 60%;
+  display: flex;
+  gap: 0.25em;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .feature-visual {
@@ -230,12 +245,17 @@
 
 .feature-bg {
   position: absolute;
-  inset: 0;
-  background-image: url("https://res.cloudinary.com/dhjttb9y2/image/upload/v1769820597/IMG_7130_mpifsr.jpg");
-  background-size: cover;
-  background-position: center;
+  top: calc(var(--space-8) * -1);
+  right: 0;
+  width: 80%;
+  height: auto;
+  max-width: none;
+  display: block;
+  object-fit: contain;
   opacity: 0.3;
-  border-radius: var(--radius-lg);
+  z-index: 0;
+  clip-path: inset(18% 0 0 0);
+  pointer-events: none;
 }
 
 .feature-card {
@@ -309,7 +329,6 @@
   width: clamp(280px, 40vw, 460px);
   height: clamp(220px, 32vw, 360px);
   object-fit: cover;
-  border-radius: var(--radius-md);
   box-shadow: var(--shadow-soft);
   z-index: 1;
 }
@@ -402,7 +421,6 @@
     min-height: auto;
   }
 
-  .feature-copy,
   .feature-visual {
     grid-column: 1 / -1;
   }
@@ -427,7 +445,13 @@
   }
 
   .feature-heading {
-    font-size: clamp(2.8rem, 12vw, 4.5rem);
+    font-size: clamp(3.4rem, 14vw, 5.2rem);
+  }
+
+  .feature-heading-row-wide {
+    width: 100%;
+    flex-wrap: wrap;
+    white-space: normal;
   }
 
   .feature-card {
