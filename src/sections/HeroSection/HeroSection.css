@@ -116,7 +116,7 @@
   height: clamp(360px, 46vw, 620px);
   border-radius: 999px;
   overflow: hidden;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(var(--hero-circle-scale, 1));
 }
 
 .hero__circle-frame::after {
@@ -136,7 +136,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  opacity: 0.25;
+  opacity: var(--hero-video-opacity, 0.2);
 }
 
 @media (max-width: 900px) {
