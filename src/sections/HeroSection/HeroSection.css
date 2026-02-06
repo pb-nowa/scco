@@ -1,7 +1,7 @@
 .hero.section {
   background: var(--color-bg);
   padding-top: 0;
-  padding-bottom: clamp(240px, 30vw, 420px);
+  padding-bottom:calc(var(--space-8) + clamp(240px, 30vw, 420px));
   position: relative;
   overflow: visible;
   height: 200vh;
@@ -88,16 +88,20 @@
   flex-direction: column;
   gap: var(--space-6);
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: stretch;
   text-align: right;
   height: 100%;
   padding-right: var(--space-6);
+  width: max-content;
+  max-width: 100%;
+  justify-self: end;
 }
 
 .hero__upcoming {
   display: grid;
   gap: var(--space-3);
   text-align: left;
+  width: 100%;
 }
 
 .hero__label {
@@ -113,6 +117,8 @@
   font-size: var(--font-size-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .hero__circle {
@@ -128,8 +134,8 @@
 
 .hero__circle-frame {
   position: relative;
-  width: clamp(360px, 46vw, 620px);
-  height: clamp(360px, 46vw, 620px);
+  width: clamp(360px, 46vw, 80vh);
+  height: clamp(360px, 46vw, 80vh);
   border-radius: 999px;
   overflow: hidden;
   transform: translate(-50%, -50%) scale(var(--hero-circle-scale, 1));
@@ -171,13 +177,23 @@
     text-align: left;
   }
 
+  .hero__right {
+    width: 100%;
+  }
+
+  .hero__upcoming {
+    width: 100%;
+  }
+
   .hero__left {
     justify-content: flex-start;
   }
 
   .hero__event {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     gap: var(--space-2);
+    width: 100%;
   }
 
   .hero__circle {
