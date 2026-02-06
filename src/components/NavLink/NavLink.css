@@ -1,0 +1,21 @@
+.site-header__nav-link {
+  padding: calc(var(--space-1) * 0.1) var(--space-1);
+  position: relative;
+  z-index: 0;
+}
+
+.site-header__nav-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-highlight);
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform 0.25s ease;
+  z-index: -1;
+}
+
+.site-header__nav-link:hover::after,
+.site-header__nav-link:focus-visible::after {
+  transform: scaleY(1);
+}

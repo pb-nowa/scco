@@ -23,10 +23,6 @@
   text-transform: uppercase;
 }
 
-.site-header__nav-link {
-  padding: var(--space-2) 0;
-}
-
 @media (max-width: 700px) {
   .site-header__nav {
     flex-wrap: wrap;
