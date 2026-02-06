@@ -20,18 +20,20 @@ const FeatureSection = () => (
       </h2>
     </div>
     <div className="layout__container feature__grid">
-      <div className="feature__visual">
-        <FeatureCard />
-        <div className="feature__quotes">
-          <div>
-            <p>“Wow this sounds like music”</p>
-            <p className="feature__quote-author">- Preston's mom</p>
-          </div>
-          <div>
-            <p>“The food is really good”</p>
-            <p className="feature__quote-author">
-              - anonymous concert attendee
-            </p>
+      <div className="feature__visual-wrap">
+        <div className="feature__visual">
+          <FeatureCard />
+          <div className="feature__quotes">
+            <div>
+              <p>“Wow this sounds like music”</p>
+              <p className="feature__quote-author">- Preston's mom</p>
+            </div>
+            <div>
+              <p>“The food is really good”</p>
+              <p className="feature__quote-author">
+                - anonymous concert attendee
+              </p>
+            </div>
           </div>
         </div>
       </div>

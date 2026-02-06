@@ -1,7 +1,7 @@
 .hero.section {
   background: var(--color-bg);
   padding-top: 0;
-  padding-bottom: calc(var(--space-9) + clamp(240px, 30vw, 420px));
+  padding-bottom: clamp(240px, 30vw, 420px);
   position: relative;
   overflow: visible;
   height: 200vh;
@@ -10,7 +10,7 @@
 .hero__grid {
   display: grid;
   gap: var(--space-7);
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 100% auto;
   position: relative;
   height: 100%;
   padding-top: 0;
@@ -24,10 +24,12 @@
   grid-column: 1 / -1;
   display: grid;
   gap: var(--space-7);
-  grid-template-columns: 1fr;
-  align-content: start;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-content: stretch;
   position: relative;
   z-index: 1;
+  padding: var(--space-6) var(--space-6) var(--space-9);
+  height: 100vh;
 }
 
 .hero__bottom {
@@ -36,10 +38,19 @@
 }
 
 .hero__left {
-  display: grid;
-  align-content: center;
-  gap: var(--space-4);
+  grid-column: 1 / span 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-6);
   z-index: 1;
+  height: 100%;
+}
+
+.hero__left-top,
+.hero__left-bottom {
+  display: grid;
 }
 
 .hero__title {
@@ -58,7 +69,7 @@
 
 .hero__location {
   margin: 0;
-  font-size: 1rem;
+  font-size: var(--font-size-xs);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-accent);
@@ -66,35 +77,40 @@
 
 .hero__tagline {
   margin: 0;
-  font-size: clamp(1.4rem, 2.4vw + 0.6rem, 2.4rem);
+  font-size: var(--font-size-xxl);
+  line-height: 0.8;
   color: var(--color-accent);
 }
 
 .hero__right {
-  display: grid;
-  gap: var(--space-5);
-  justify-items: start;
-  align-content: center;
-  text-align: left;
-  z-index: 1;
+  grid-column: 2 / span 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-align: right;
+  height: 100%;
+  padding-right: var(--space-6);
 }
 
 .hero__upcoming {
   display: grid;
   gap: var(--space-3);
+  text-align: left;
 }
 
 .hero__label {
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
 }
 
 .hero__event {
   display: flex;
   gap: var(--space-6);
-  font-size: 0.95rem;
+  font-size: var(--font-size-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -151,8 +167,12 @@
   .hero__left,
   .hero__right {
     grid-column: 1 / -1;
-    justify-items: start;
+    align-items: flex-start;
     text-align: left;
+  }
+
+  .hero__left {
+    justify-content: flex-start;
   }
 
   .hero__event {

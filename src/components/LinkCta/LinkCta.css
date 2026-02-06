@@ -2,7 +2,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-3);
-  font-size: 0.95rem;
+  font-size: var(--font-size-lg);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   position: relative;
