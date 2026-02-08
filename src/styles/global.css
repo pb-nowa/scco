@@ -82,7 +82,7 @@ main {
 .section-title {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: clamp(4.5rem, 11vw, 10rem);
+  font-size: clamp(4.5rem, 11vw, 12rem);
   font-weight: 300;
   line-height: 0.9;
   letter-spacing: 0.02em;

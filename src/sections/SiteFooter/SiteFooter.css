@@ -87,7 +87,7 @@
   gap: var(--space-4);
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  font-size: 0.75rem;
+  font-size: var(font-size-xs);
 }
 
 @media (max-width: 900px) {
