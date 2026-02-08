@@ -9,6 +9,7 @@
   position: relative;
   overflow: visible;
   margin-bottom: var(--space-8);
+  will-change: transform;
 }
 
 .feature__grid {

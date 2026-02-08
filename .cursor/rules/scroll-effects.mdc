@@ -1,0 +1,10 @@
+---
+description: Use shared scroll manager for scroll effects
+alwaysApply: true
+---
+
+# Scroll Effects
+
+- Use `useScrollManager` for any scroll-driven effects.
+- Do not add direct `window.addEventListener("scroll", ...)` in components.
+- Add new scroll behaviors as subscribers via the shared manager.

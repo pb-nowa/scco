@@ -1,51 +1,50 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import LinkCta from "../../components/LinkCta/LinkCta";
+import useScrollManager from "../../hooks/useScrollManager";
 import "./HeroSection.css";
 
 const HeroSection = () => {
   const heroRef = useRef(null);
 
-  useEffect(() => {
+  const applyHeroStyles = useCallback((opacity, scale) => {
     const section = heroRef.current;
     if (!section) {
-      return undefined;
+      return;
     }
 
-    let rafId = null;
-
-    const updateOpacity = () => {
-      rafId = null;
-      const rect = section.getBoundingClientRect();
-      const scrollTop = window.scrollY || window.pageYOffset;
-      const sectionTop = scrollTop + rect.top;
-      const sectionHeight = section.offsetHeight;
-      const maxScroll = Math.max(1, sectionHeight - window.innerHeight);
-      const progress = Math.min(1, Math.max(0, (scrollTop - sectionTop) / maxScroll));
-      const opacity = 0.2 + 0.4 * progress;
-      const scale = 1 + 0.15 * progress;
-      section.style.setProperty("--hero-video-opacity", opacity.toFixed(3));
-      section.style.setProperty("--hero-circle-scale", scale.toFixed(3));
-    };
-
-    const onScroll = () => {
-      if (rafId !== null) {
-        return;
-      }
-      rafId = window.requestAnimationFrame(updateOpacity);
-    };
-
-    updateOpacity();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-
-    return () => {
-      if (rafId !== null) {
-        window.cancelAnimationFrame(rafId);
-      }
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
+    section.style.setProperty("--hero-video-opacity", opacity.toFixed(3));
+    section.style.setProperty("--hero-circle-scale", scale.toFixed(3));
   }, []);
+
+  const updateOpacity = useCallback(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const section = heroRef.current;
+    if (!section) {
+      return;
+    }
+
+    const rect = section.getBoundingClientRect();
+    const scrollTop = window.scrollY || window.pageYOffset;
+    const sectionTop = scrollTop + rect.top;
+    const sectionHeight = section.offsetHeight;
+    const maxScroll = Math.max(1, sectionHeight - window.innerHeight);
+    const progress = Math.min(1, Math.max(0, (scrollTop - sectionTop) / maxScroll));
+    const opacity = 0.2 + 0.4 * progress;
+    const scale = 1 + 0.15 * progress;
+
+    applyHeroStyles(opacity, scale);
+  }, [applyHeroStyles]);
+
+  const prefersReducedMotion = useScrollManager(updateOpacity);
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      applyHeroStyles(0.2, 1);
+    }
+  }, [applyHeroStyles, prefersReducedMotion]);
 
   return (
     <section className="hero section" id="about" ref={heroRef}>
