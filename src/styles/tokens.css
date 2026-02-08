@@ -1,6 +1,8 @@
 :root {
   color-scheme: light;
 
+  --base-font-size: 16px;
+
   --color-ink: hsl(0 55% 9%);
   --color-muted: hsl(33 10% 40%);
   --color-bg: #ff8585;
@@ -40,4 +42,24 @@
   --font-size-lg: 1.1rem;
   --font-size-xs: 0.75rem;
   --font-size-xxl: 2.4rem;
+
+  font-size: var(--base-font-size);
+}
+
+@media (max-width: 600px) {
+  :root {
+    --base-font-size: 15px;
+  }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --base-font-size: 17px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --base-font-size: 18px;
+  }
 }

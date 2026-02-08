@@ -31,7 +31,7 @@ main {
 }
 
 .layout__container {
-  width: min(2400px, 100%);
+  width: min(150rem, 100%);
   margin: 0 auto;
 }
 
@@ -54,7 +54,7 @@ main {
 .layout__grid {
   display: grid;
   gap: var(--space-5);
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 
 .layout__grid--tight {

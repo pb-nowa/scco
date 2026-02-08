@@ -28,7 +28,7 @@
   align-content: stretch;
   position: relative;
   z-index: 1;
-  padding: var(--space-6) var(--space-6) var(--space-9);
+  padding: var(--space-7) var(--space-8) var(--space-9);
   height: 100vh;
 }
 
@@ -91,7 +91,6 @@
   align-items: stretch;
   text-align: right;
   height: 100%;
-  padding-right: var(--space-6);
   width: max-content;
   max-width: 100%;
   justify-self: end;
