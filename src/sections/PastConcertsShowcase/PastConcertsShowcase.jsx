@@ -1,4 +1,5 @@
 import "./PastConcertsShowcase.css";
+import FeatureHeading from "../../components/FeatureHeading/FeatureHeading";
 
 const posters = [
   {
@@ -39,10 +40,9 @@ const PastConcertsShowcase = () => (
     </div>
     <div className="past-concerts__media">
       <div className="layout__container past-concerts__content">
-        <h2 className="past-concerts__title section-title section-title--past">
-          <span>Past</span>
-          <span>Concerts</span>
-        </h2>
+        <div className="past-concerts__title section-title section-title--past">
+          <FeatureHeading lines={["PAST", "CONCERTS"]} />
+        </div>
       </div>
     </div>
     <div className="layout__container past-concerts__posters">

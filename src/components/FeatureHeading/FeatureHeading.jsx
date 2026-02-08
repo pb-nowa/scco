@@ -6,20 +6,13 @@ const PARALLAX_OFFSET = 100;
 const LINE_DISTANCE_MULTIPLIER_UP = 0.25;
 const LINE_DISTANCE_MULTIPLIER_DOWN = -0.5;
 
-const FeatureHeading = () => {
+const DEFAULT_LINES = ["LET'S MAKE", "SOME", "MUSIC"];
+
+const FeatureHeading = ({ lines = DEFAULT_LINES }) => {
   const headingRef = useRef(null);
-  const lineCount = 3;
+  const lineCount = lines.length;
   const middleIndex = Math.floor(lineCount / 2);
-  const [lineOffsets, setLineOffsets] = useState(() =>
-    Array.from({ length: lineCount }, (_, index) => {
-      const direction = index <= middleIndex ? -1 : 1;
-      const distance = Math.abs(index - middleIndex);
-      const multiplier =
-        direction < 0 ? LINE_DISTANCE_MULTIPLIER_UP : LINE_DISTANCE_MULTIPLIER_DOWN;
-      const magnitude = PARALLAX_OFFSET * (1 + distance * multiplier);
-      return direction * magnitude;
-    })
-  );
+  const [lineOffsets, setLineOffsets] = useState([]);
 
   const updatePosition = useCallback(() => {
     if (typeof window === "undefined") {
@@ -60,31 +53,37 @@ const FeatureHeading = () => {
   useEffect(() => {
     if (prefersReducedMotion) {
       setLineOffsets(Array.from({ length: lineCount }, () => 0));
+      return;
     }
-  }, [prefersReducedMotion]);
+
+    setLineOffsets(
+      Array.from({ length: lineCount }, (_, index) => {
+        const direction = index <= middleIndex ? -1 : 1;
+        const distance = Math.abs(index - middleIndex);
+        const multiplier =
+          direction < 0
+            ? LINE_DISTANCE_MULTIPLIER_UP
+            : LINE_DISTANCE_MULTIPLIER_DOWN;
+        const magnitude = PARALLAX_OFFSET * (1 + distance * multiplier);
+        return direction * magnitude;
+      })
+    );
+  }, [lineCount, middleIndex, prefersReducedMotion]);
 
   return (
     <div className="feature__heading-wrap" ref={headingRef}>
       <h2 className="feature__heading section-title section-title--feature">
-        <span
-          className="feature__heading-row feature__heading-row--wide"
-          style={{ transform: `translate3d(0, ${lineOffsets[0]}px, 0)` }}
-        >
-          <span>LET&apos;S</span>
-          <span>MAKE</span>
-        </span>
-        <span
-          className="feature__heading-row"
-          style={{ transform: `translate3d(0, ${lineOffsets[1]}px, 0)` }}
-        >
-          SOME
-        </span>
-        <span
-          className="feature__heading-row"
-          style={{ transform: `translate3d(0, ${lineOffsets[2]}px, 0)` }}
-        >
-          MUSIC
-        </span>
+        {lines.map((line, index) => (
+          <span
+            key={`${line}-${index}`}
+            className={`feature__heading-row${
+              index === 0 ? " feature__heading-row--wide" : ""
+            }`}
+            style={{ transform: `translate3d(0, ${lineOffsets[index]}px, 0)` }}
+          >
+            {line}
+          </span>
+        ))}
       </h2>
     </div>
   );
