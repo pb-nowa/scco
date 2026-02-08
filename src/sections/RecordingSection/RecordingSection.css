@@ -5,14 +5,7 @@
 }
 
 .recording {
-  background: #ffffff;
-}
-
-.recording__container {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0 auto;
-  width: min(1800px, 100% - 10rem);
+  margin: var(--space-9) 0;
 }
 
 .recording__title {

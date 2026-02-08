@@ -1,4 +1,5 @@
 import FeatureCard from "../../components/FeatureCard/FeatureCard";
+import FeatureHeading from "../../components/FeatureHeading/FeatureHeading";
 import "./FeatureSection.css";
 
 const FeatureSection = () => (
@@ -9,18 +10,9 @@ const FeatureSection = () => (
       alt=""
       aria-hidden="true"
     />
-    <div className="feature__heading-wrap">
-      <h2 className="feature__heading section-title section-title--feature">
-        <span className="feature__heading-row feature__heading-row--wide">
-          <span>LET'S</span>
-          <span>MAKE</span>
-        </span>
-        <span className="feature__heading-row">SOME</span>
-        <span className="feature__heading-row">MUSIC</span>
-      </h2>
-    </div>
-    <div className="layout__container feature__grid">
-      <div className="feature__visual-wrap">
+    <FeatureHeading />
+    <div className="feature__grid section-split__grid">
+      <div className="feature__visual-wrap section-split__right">
         <div className="feature__visual">
           <FeatureCard />
           <div className="feature__quotes">
@@ -38,7 +30,7 @@ const FeatureSection = () => (
         </div>
       </div>
       <img
-        className="feature__photo"
+        className="feature__photo section-split__left"
         src="https://res.cloudinary.com/dhjttb9y2/image/upload/v1769820664/IMG_1376_cyswwz.jpg"
         alt="Shoal Circle Chamber Orchestra ensemble"
       />
