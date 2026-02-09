@@ -1,5 +1,5 @@
 .past-concerts {
-  background: #ffffff;
+  background: var(--color-page);
   padding-top: var(--space-7);
   padding-bottom: var(--space-9);
   overflow: visible;

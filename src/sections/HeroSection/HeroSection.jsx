@@ -78,9 +78,6 @@ const HeroSection = () => {
               </h1>
               <p className="hero__location section-heading">SAN MATEO, CA</p>
             </div>
-            <div className="hero__left-bottom">
-              <p className="hero__tagline">Find your inner musician.</p>
-            </div>
           </div>
           <div className="hero__right">
             <div className="hero__upcoming">

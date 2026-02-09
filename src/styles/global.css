@@ -7,13 +7,13 @@
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background: #ffffff;
+  background: var(--color-page);
   color: var(--color-ink);
-  line-height: 1.6;
+  line-height: 1.25;
 }
 
 .layout {
-  background: #ffffff;
+  background: var(--color-page);
 }
 
 img {

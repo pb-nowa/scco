@@ -9,6 +9,14 @@
   box-shadow: none;
   display: grid;
   gap: var(--space-3);
+  opacity: 0;
+  transform: translate3d(48px, 0, 0);
+  transition: transform 600ms ease, opacity 600ms ease;
+}
+
+.feature-card--in-view {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 .feature-card__location {
@@ -35,5 +43,13 @@
 @media (max-width: 700px) {
   .feature-card {
     width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

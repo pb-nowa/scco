@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import useScrollManager from "../../hooks/useScrollManager";
 
-const PARALLAX_OFFSET = 100;
+const PARALLAX_OFFSET = 60;
 
-const LINE_DISTANCE_MULTIPLIER_UP = 0.25;
-const LINE_DISTANCE_MULTIPLIER_DOWN = -0.5;
+const LINE_DISTANCE_MULTIPLIER_UP = 0.15;
+const LINE_DISTANCE_MULTIPLIER_DOWN = -0.3;
 
 const DEFAULT_LINES = ["LET'S MAKE", "SOME", "MUSIC"];
 
