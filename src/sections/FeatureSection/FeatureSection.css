@@ -67,24 +67,6 @@
   pointer-events: none;
 }
 
-.feature__quotes {
-  margin: var(--space-6) 0;
-  width: min(520px, 100%);
-  display: flex;
-  justify-content: space-around;
-  gap: var(--space-4);
-  font-size: var(--font-size-md);
-  color: var(--color-ink);
-}
-
-.feature__quotes p {
-  margin: 0;
-}
-
-.feature__quote-author {
-  font-style: italic;
-}
-
 .feature__photo {
   position: absolute;
   top: 20%;
@@ -125,11 +107,5 @@
     width: 100%;
     flex-wrap: wrap;
     white-space: normal;
-  }
-
-  .feature__quotes {
-    justify-content: space-around;
-    gap: var(--space-6);
-    flex-wrap: wrap;
   }
 }

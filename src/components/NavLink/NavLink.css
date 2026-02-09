@@ -1,7 +1,9 @@
 .site-header__nav-link {
   padding: calc(var(--space-1) * 0.1) var(--space-1);
+  font-size: var(--font-size-xs);
   position: relative;
   z-index: 0;
+  letter-spacing: 0.2rem;
 }
 
 .site-header__nav-link::after {

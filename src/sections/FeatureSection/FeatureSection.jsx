@@ -1,5 +1,6 @@
 import FeatureCard from "../../components/FeatureCard/FeatureCard";
 import FeatureHeading from "../../components/FeatureHeading/FeatureHeading";
+import FeatureQuotes from "../../components/FeatureQuotes/FeatureQuotes";
 import "./FeatureSection.css";
 
 const FeatureSection = () => (
@@ -15,18 +16,7 @@ const FeatureSection = () => (
       <div className="feature__visual-wrap section-split__right">
         <div className="feature__visual">
           <FeatureCard />
-          <div className="feature__quotes">
-            <div>
-              <p>“Wow this sounds like music”</p>
-              <p className="feature__quote-author">- Preston's mom</p>
-            </div>
-            <div>
-              <p>“The food is really good”</p>
-              <p className="feature__quote-author">
-                - anonymous concert attendee
-              </p>
-            </div>
-          </div>
+          <FeatureQuotes />
         </div>
       </div>
       <img
