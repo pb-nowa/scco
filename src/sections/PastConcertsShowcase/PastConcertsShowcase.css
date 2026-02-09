@@ -4,13 +4,13 @@
   padding-bottom: var(--space-9);
   overflow: visible;
   position: relative;
+  margin-bottom: var(--space-9);
 }
 
 .past-concerts__media {
   position: relative;
   padding: 0 var(--space-8);
   margin-top: var(--space-6);
-  min-height: clamp(280px, 45vh, 520px);
   z-index: 1;
   overflow: visible;
 }
@@ -38,6 +38,7 @@
   position: relative;
   top: -100px;
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
@@ -54,26 +55,67 @@
   display: block;
 }
 
+.past-concerts .feature__heading-wrap {
+  margin-bottom: 0;
+}
+
+.past-concerts__rules {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  width: 100%;
+  transform: translateY(40px);
+  position: absolute;
+  bottom: 0;
+}
+
+.past-concerts__rule {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--color-ink);
+  opacity: 0.8;
+}
+
 .past-concerts__posters {
   display: flex;
-  gap: var(--space-5);
-  justify-content: space-between;
+  gap: calc(var(--space-6) * 2);
+  justify-content: center;
   align-items: stretch;
   flex-wrap: wrap;
   margin-top: var(--space-6);
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
   z-index: 1;
 }
 
-.past-concerts__poster {
-  flex: 1 1 200px;
+.past-concerts__poster-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: center;
+  flex: 0 1 220px;
   min-width: 180px;
   max-width: 240px;
+}
+
+.past-concerts__poster {
+  width: 100%;
   aspect-ratio: 9 / 16;
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-soft);
+  border: none;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.20);
   background: var(--color-surface);
   overflow: hidden;
+}
+
+.past-concerts__poster-year {
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
 }
 
 .past-concerts__poster-image {
@@ -83,14 +125,34 @@
   display: block;
 }
 
+.past-concerts__footer {
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  aspect-ratio: 3 / 1.2;
+  background-color: var(--color-page);
+}
+
+.past-concerts__footer-image {
+  opacity: 0.3;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 60%;
+}
+
 @media (max-width: 900px) {
   .past-concerts__posters {
     justify-content: center;
+    gap: calc(var(--space-5) * 2);
   }
 }
 
 @media (max-width: 700px) {
   .past-concerts__content {
+    top: -60px;
     padding-top: var(--space-4);
   }
 
