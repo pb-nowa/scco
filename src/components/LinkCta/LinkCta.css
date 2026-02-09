@@ -10,6 +10,15 @@
 .cta__icon {
   font-size: 1.4rem;
   line-height: 1;
+  display: inline-block;
+  transform-origin: left center;
+  transition: transform 200ms ease;
+}
+
+.cta__icon svg {
+  display: block;
+  stroke-width: 1.5px;
+  transition: stroke-width 200ms ease;
 }
 
 .cta__text {
@@ -26,6 +35,19 @@
   width: 100%;
   background: var(--color-highlight);
   z-index: -1;
+  transition: height 200ms ease;
+}
+
+.cta:hover .cta__text::after {
+  height: 100%;
+}
+
+.cta:hover .cta__icon {
+  transform: scaleX(1.2) scaleY(1.15) translateX(0.15em);
+}
+
+.cta:hover .cta__icon svg {
+  stroke-width: 2px;
 }
 
 .cta--feature {
