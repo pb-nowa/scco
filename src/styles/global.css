@@ -26,6 +26,11 @@ a {
   text-decoration: none;
 }
 
+.section-heading {
+  letter-spacing: 0.2rem;
+  font-size: var(--font-size-md);
+}
+
 main {
   display: block;
 }
@@ -78,7 +83,6 @@ main {
 
 .section__eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.12em;
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--color-muted);
@@ -100,7 +104,6 @@ main {
   font-size: clamp(4.5rem, 11vw, 12rem);
   font-weight: 300;
   line-height: 0.9;
-  letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 

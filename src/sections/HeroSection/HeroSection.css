@@ -60,7 +60,6 @@
   font-weight: 300;
   line-height: 0.9;
   color: var(--color-accent);
-  letter-spacing: 0.02em;
 }
 
 .hero__title span {
@@ -70,7 +69,6 @@
 .hero__location {
   margin: 0;
   font-size: var(--font-size-xs);
-  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-accent);
 }
@@ -106,7 +104,6 @@
 .hero__label {
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
   font-size: var(--font-size-xs);
 }
 
@@ -114,7 +111,6 @@
   display: flex;
   gap: var(--space-6);
   font-size: var(--font-size-xs);
-  letter-spacing: 0.08em;
   text-transform: uppercase;
   width: 100%;
   justify-content: space-between;

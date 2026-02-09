@@ -19,7 +19,6 @@
   display: flex;
   gap: var(--space-4);
   font-size: var(--font-size-sm);
-  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 

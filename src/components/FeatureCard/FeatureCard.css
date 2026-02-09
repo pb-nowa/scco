@@ -14,7 +14,6 @@
 .feature-card__location {
   margin: 0;
   font-size: 2.4rem;
-  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-ink);
 }
@@ -23,7 +22,6 @@
 .feature-card__venue {
   margin: 0;
   font-size: var(--font-size-lg);
-  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-ink);
 }
