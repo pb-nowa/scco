@@ -19,6 +19,14 @@
 .recording__frame {
   border: 2px solid var(--color-ink);
   padding: var(--space-5) var(--space-6);
+  opacity: 0;
+  transform: translate3d(48px, 0, 0);
+  transition: transform 600ms ease, opacity 600ms ease;
+}
+
+.recording__frame--in-view {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 .recording__row {
@@ -77,5 +85,13 @@
   .recording__row {
     grid-template-columns: 20px 1fr auto;
     gap: var(--space-3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .recording__frame {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
