@@ -48,7 +48,7 @@ const PastConcertsShowcase = () => (
           </div>
         </div>
       </div>
-      <div className="layout__container past-concerts__posters">
+      <div className="past-concerts__posters">
         {posters.map((poster) => (
           <article key={poster.title} className="past-concerts__poster-item">
             <span className="past-concerts__poster-year">{poster.year}</span>
