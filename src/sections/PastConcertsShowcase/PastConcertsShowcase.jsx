@@ -1,6 +1,17 @@
 import FeatureHeading from "../../components/FeatureHeading/FeatureHeading";
+import ConcertPoster from "./ConcertPoster/ConcertPoster";
 import PastConcertsFooter from "./PastConcertsFooter/PastConcertsFooter";
 import "./PastConcertsShowcase.css";
+
+const placeholderProgram = [
+  { piece: "Opening Fanfare", composer: "J. Smith" },
+  { piece: "Serenade in D", composer: "A. Composer" },
+  { piece: "Nocturne", composer: "M. Williams" },
+  { piece: "Intermezzo", composer: "L. Jones" },
+  { piece: "Scherzo", composer: "R. Brown" },
+  { piece: "Adagio", composer: "K. Davis" },
+  { piece: "Finale", composer: "E. Taylor" },
+];
 
 const posters = [
   {
@@ -9,6 +20,7 @@ const posters = [
     subtitle: "Live at Palo Alto Arts Center",
     image:
       "https://res.cloudinary.com/dhjttb9y2/image/upload/v1769880893/Insta_story.PNG_w3wnqh.png",
+    program: placeholderProgram,
   },
   {
     year: "2024",
@@ -16,6 +28,7 @@ const posters = [
     subtitle: "Shoal Circle Chamber Orchestra",
     image:
       "https://res.cloudinary.com/dhjttb9y2/image/upload/v1769880879/Insta_story_2_o4t0kn.png",
+    program: placeholderProgram,
   },
   {
     year: "2023",
@@ -23,6 +36,7 @@ const posters = [
     subtitle: "Shoal Circle Chamber Orchestra",
     image:
       "https://res.cloudinary.com/dhjttb9y2/image/upload/v1769880844/IMG_3970_cw9xeo.png",
+    program: placeholderProgram,
   },
   {
     year: "2022",
@@ -30,6 +44,7 @@ const posters = [
     subtitle: "A winter concert",
     image:
       "https://res.cloudinary.com/dhjttb9y2/image/upload/v1769880901/Program-Invite_ekfqcz.jpg",
+    program: placeholderProgram,
   },
 ];
 
@@ -50,16 +65,13 @@ const PastConcertsShowcase = () => (
       </div>
       <div className="past-concerts__posters">
         {posters.map((poster) => (
-          <article key={poster.title} className="past-concerts__poster-item">
-            <span className="past-concerts__poster-year">{poster.year}</span>
-            <div className="past-concerts__poster">
-              <img
-                className="past-concerts__poster-image"
-                src={poster.image}
-                alt={`${poster.title} poster`}
-              />
-            </div>
-          </article>
+          <ConcertPoster
+            key={poster.title}
+            year={poster.year}
+            title={poster.title}
+            image={poster.image}
+            program={poster.program}
+          />
         ))}
       </div>
     </section>
