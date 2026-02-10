@@ -126,9 +126,7 @@
 }
 
 .past-concerts__footer {
-  width: 100vw;
-  margin-left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
   overflow: hidden;
   aspect-ratio: 3 / 1.2;
   background-color: var(--color-page);

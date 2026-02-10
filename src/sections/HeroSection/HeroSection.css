@@ -84,7 +84,7 @@
   grid-column: 2 / span 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-7);
   justify-content: flex-end;
   align-items: stretch;
   text-align: right;
@@ -96,7 +96,7 @@
 
 .hero__upcoming {
   display: grid;
-  gap: var(--space-3);
+  gap: var(--space-5);
   text-align: left;
   width: 100%;
 }
