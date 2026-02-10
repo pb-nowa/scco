@@ -13,7 +13,8 @@ const ConcertPoster = ({ year, title, image, program = [] }) => (
           />
         </div>
         <div className="concert-poster__back" aria-hidden="true">
-          <h3 className="concert-poster__program-title">PROGRAM</h3>
+          <span className="concert-poster__back-year">{year}</span>
+          <h2 className="concert-poster__back-program-name">{title}</h2>
           <ul className="concert-poster__program-list">
             {program.map(({ piece, composer }, i) => (
               <li key={i} className="concert-poster__program-item">

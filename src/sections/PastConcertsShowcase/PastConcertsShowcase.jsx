@@ -16,7 +16,7 @@ const placeholderProgram = [
 const posters = [
   {
     year: "2025",
-    title: "Monsters Symphonic",
+    title: "Monsters SymphonInc",
     subtitle: "Live at Palo Alto Arts Center",
     image:
       "https://res.cloudinary.com/dhjttb9y2/image/upload/v1769880893/Insta_story.PNG_w3wnqh.png",
