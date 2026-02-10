@@ -1,5 +1,6 @@
-import "./PastConcertsShowcase.css";
 import FeatureHeading from "../../components/FeatureHeading/FeatureHeading";
+import PastConcertsFooter from "./PastConcertsFooter/PastConcertsFooter";
+import "./PastConcertsShowcase.css";
 
 const posters = [
   {
@@ -62,13 +63,7 @@ const PastConcertsShowcase = () => (
         ))}
       </div>
     </section>
-    <div className="past-concerts__footer">
-      <img
-        className="past-concerts__footer-image"
-        src="https://res.cloudinary.com/dhjttb9y2/image/upload/v1769881017/IMG_7146_clajal.jpg"
-        alt="Past concerts background"
-      />
-    </div>
+    <PastConcertsFooter />
   </>
 );
 
