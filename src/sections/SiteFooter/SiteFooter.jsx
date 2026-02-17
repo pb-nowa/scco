@@ -14,7 +14,7 @@ const SiteFooter = () => (
           We'd love to hear from you! Reach out for inquiries about joining the
           orchestra or future concerts.
         </p>
-        <LinkCta className="cta--feature" href="mailto:info@shoalcirclechamberorchestra.org">
+        <LinkCta className="cta--feature" href="/contact">
           Contact us
         </LinkCta>
       </div>
