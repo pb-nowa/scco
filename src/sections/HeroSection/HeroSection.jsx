@@ -88,7 +88,9 @@ const HeroSection = () => {
                 <span>December 2026</span>
               </div>
             </div>
-            <LinkCta href="#upcoming">Get concert updates</LinkCta>
+            <div className="hero__cta">
+              <LinkCta href="#upcoming">Get concert updates</LinkCta>
+            </div>
           </div>
         </div>
         <div className="hero__bottom" aria-hidden="true" />

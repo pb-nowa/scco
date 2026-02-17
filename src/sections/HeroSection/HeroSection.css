@@ -49,6 +49,41 @@
   height: 100%;
 }
 
+/* Page-load fade-in from top */
+.hero__title span,
+.hero__location,
+.hero__label,
+.hero__event,
+.hero__cta {
+  opacity: 0;
+  transform: translateY(-24px);
+  animation: hero__fade-in-from-top 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+
+@keyframes hero__fade-in-from-top {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__title span,
+  .hero__location,
+  .hero__label,
+  .hero__event,
+  .hero__cta {
+    opacity: 1;
+    transform: translateY(0);
+    animation: none;
+  }
+}
+
 .hero__left-top,
 .hero__left-bottom {
   display: grid;
