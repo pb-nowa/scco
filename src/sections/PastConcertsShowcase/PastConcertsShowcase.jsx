@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import FeatureHeading from "../../components/FeatureHeading/FeatureHeading";
 import useScrollManager from "../../hooks/useScrollManager";
-import ConcertPoster from "./ConcertPoster/ConcertPoster";
+import ConcertPosterReveal from "./ConcertPosterReveal/ConcertPosterReveal";
 import PastConcertsFooter from "./PastConcertsFooter/PastConcertsFooter";
 import "./PastConcertsShowcase.css";
 
@@ -105,7 +105,7 @@ const PastConcertsShowcase = () => {
         </div>
         <div className="past-concerts__posters">
           {posters.map((poster) => (
-            <ConcertPoster
+            <ConcertPosterReveal
               key={poster.title}
               year={poster.year}
               title={poster.title}
