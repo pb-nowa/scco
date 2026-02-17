@@ -69,6 +69,7 @@
 }
 
 .feature__photo {
+  --feature-photo-parallax-y: 0px;
   position: absolute;
   top: 20%;
   left: 0;
@@ -76,8 +77,10 @@
   align-self: end;
   justify-self: start;
   height: auto;
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 4px 12px var(--color-ink-06);
   z-index: 1;
+  transform: translateY(var(--feature-photo-parallax-y));
+  will-change: transform;
 }
 
 @media (max-width: 900px) {

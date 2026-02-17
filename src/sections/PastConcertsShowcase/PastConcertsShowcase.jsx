@@ -59,7 +59,7 @@ const PastConcertsShowcase = () => {
     const el = rulesRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const threshold = window.innerHeight * 0.85;
+    const threshold = window.innerHeight * 1.2;
     if (rect.top < threshold) {
       setRulesInView(true);
     }
