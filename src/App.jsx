@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { LenisProvider } from "./components/LenisProvider/LenisProvider";
 import { PageTransitionProvider } from "./context/PageTransitionContext";
 import { usePageTransitionClickHandler } from "./hooks/usePageTransitionClickHandler";
+import { useScrollTo } from "./context/ScrollToContext";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
@@ -13,47 +15,51 @@ function PageTransitionHandler() {
   return null;
 }
 
-
 function ScrollToHash() {
   const { hash } = useLocation();
+  const scrollTo = useScrollTo();
 
   useEffect(() => {
-    if (hash) {
-      const id = hash.slice(1);
-      const el = document.getElementById(id);
-      el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (hash && scrollTo) {
+      scrollTo(hash.slice(1));
     }
-  }, [hash]);
+  }, [hash, scrollTo]);
+
+  return null;
+}
+
+function ScrollToTopOnLogo() {
+  const { pathname, state } = useLocation();
+  const navigate = useNavigate();
+  const scrollTo = useScrollTo();
+
+  useEffect(() => {
+    if (pathname === "/" && state?.fromLogo && scrollTo) {
+      scrollTo(0);
+      navigate("/", { replace: true, state: {} });
+    }
+  }, [pathname, state?.fromLogo, navigate, scrollTo]);
 
   return null;
 }
 
 function App() {
-  const { pathname, state } = useLocation();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (pathname === "/" && state?.fromLogo) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      navigate("/", { replace: true, state: {} });
-    }
-  }, [pathname, state?.fromLogo, navigate]);
-
   return (
     <PageTransitionProvider>
       <PageTransitionHandler />
-      <div className="layout">
-        <SiteHeader />
-        <ScrollToHash />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-
-      <SiteFooter />
-    </div>
+      <LenisProvider>
+        <div className="layout">
+          <SiteHeader />
+          <ScrollToHash />
+          <ScrollToTopOnLogo />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+          <SiteFooter />
+        </div>
+      </LenisProvider>
     </PageTransitionProvider>
   );
 }

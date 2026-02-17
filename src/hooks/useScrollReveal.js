@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import useScrollManager from "./useScrollManager";
+import { getScrollY } from "../utils/scrollPosition";
 
 const DEFAULT_THRESHOLD = 0.85;
 
@@ -24,7 +25,7 @@ const useScrollReveal = (options = {}) => {
       return;
     }
 
-    const currentScrollY = window.scrollY || window.pageYOffset || 0;
+    const currentScrollY = getScrollY();
     const scrollDelta = currentScrollY - lastScrollY.current;
     lastScrollY.current = currentScrollY;
 

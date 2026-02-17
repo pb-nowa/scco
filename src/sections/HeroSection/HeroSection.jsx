@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import LinkCta from "../../components/LinkCta/LinkCta";
 import useScrollManager from "../../hooks/useScrollManager";
+import { getScrollY } from "../../utils/scrollPosition";
 import "./HeroSection.css";
 
 const HeroSection = () => {
@@ -27,7 +28,7 @@ const HeroSection = () => {
     }
 
     const rect = section.getBoundingClientRect();
-    const scrollTop = window.scrollY || window.pageYOffset;
+    const scrollTop = getScrollY();
     const sectionTop = scrollTop + rect.top;
     const sectionHeight = section.offsetHeight;
     const maxScroll = Math.max(1, sectionHeight - window.innerHeight);

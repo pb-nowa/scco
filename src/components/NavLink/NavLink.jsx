@@ -1,10 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
+import { useScrollTo } from "../../context/ScrollToContext";
 import "./NavLink.css";
 
 const NavLink = ({ to, href, children, className = "", onClick, ...props }) => {
   const classes = ["site-header__nav-link", className].filter(Boolean).join(" ");
   const destination = to ?? href;
   const location = useLocation();
+  const scrollTo = useScrollTo();
 
   if (destination?.startsWith("http") || destination?.startsWith("mailto:")) {
     return (
@@ -24,9 +26,7 @@ const NavLink = ({ to, href, children, className = "", onClick, ...props }) => {
 
       if (currentPath === targetPath && currentHash === targetHash) {
         e.preventDefault();
-        const id = hashPart;
-        const el = document.getElementById(id);
-        el?.scrollIntoView({ behavior: "smooth", block: "start" });
+        scrollTo?.(hashPart);
       }
     }
     onClick?.(e);

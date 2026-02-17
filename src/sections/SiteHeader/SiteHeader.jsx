@@ -3,11 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import NavLink from "../../components/NavLink/NavLink";
 import { NAV_LINKS } from "../../constants/navLinks";
 import useScrollManager from "../../hooks/useScrollManager";
+import { useScrollTo } from "../../context/ScrollToContext";
 import "./SiteHeader.css";
 
 const SiteHeader = () => {
   const [showLogo, setShowLogo] = useState(false);
   const location = useLocation();
+  const scrollTo = useScrollTo();
 
   const checkScrollPastHero = useCallback(() => {
     if (location.pathname !== "/") {
@@ -33,7 +35,7 @@ const SiteHeader = () => {
     if (location.pathname === "/") {
       e.preventDefault();
     }
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollTo?.(0);
   };
 
   return (

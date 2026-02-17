@@ -4,8 +4,11 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Smooth scroll for programmatic scrolls when Lenis is disabled (e.g. prefers-reduced-motion) */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
