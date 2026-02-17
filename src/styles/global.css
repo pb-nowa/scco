@@ -48,6 +48,11 @@ main {
   padding: var(--space-4) 0;
 }
 
+.section[id],
+#contact {
+  scroll-margin-top: 6rem;
+}
+
 .section--muted {
   background: var(--color-accent-08);
 }

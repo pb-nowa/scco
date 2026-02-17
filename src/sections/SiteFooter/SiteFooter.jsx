@@ -30,8 +30,8 @@ const SiteFooter = () => (
     <div className="layout__container site-footer__bottom">
       <div className="site-footer__copyright">© 2026 Shoal Circle Chamber Orchestra. All rights reserved.</div>
       <nav className="site-footer__nav" aria-label="Footer">
-        {NAV_LINKS.map(({ href, label }) => (
-          <NavLink key={href} href={href}>
+        {NAV_LINKS.map(({ to, label }) => (
+          <NavLink key={to} to={to}>
             {label}
           </NavLink>
         ))}
