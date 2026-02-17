@@ -4,7 +4,7 @@ import FeatureQuotes from "../../components/FeatureQuotes/FeatureQuotes";
 import "./FeatureSection.css";
 
 const FeatureSection = () => (
-  <section className="section feature" id="music">
+  <section className="section feature" id="upcoming">
     <img
       className="feature__bg"
       src="https://res.cloudinary.com/dhjttb9y2/image/upload/v1769820597/IMG_7130_mpifsr.jpg"

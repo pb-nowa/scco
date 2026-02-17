@@ -53,6 +53,10 @@ main {
   scroll-margin-top: 6rem;
 }
 
+#upcoming {
+  scroll-margin-top: calc(6rem - 75px);
+}
+
 .section--muted {
   background: var(--color-accent-08);
 }

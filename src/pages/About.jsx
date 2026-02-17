@@ -25,7 +25,7 @@ const About = () => (
           The musicians feature a wide range of music styles that change each
           year depending on the group's unique instrumentation and skill levels.
         </p>
-        <LinkCta href="/#music">View upcoming concerts</LinkCta>
+        <LinkCta href="/#upcoming">View upcoming concerts</LinkCta>
       </div>
     </section>
   </main>

@@ -1,5 +1,5 @@
 export const NAV_LINKS = [
   { to: "/about", label: "About" },
-  { to: "/#music", label: "Upcoming" },
+  { to: "/#upcoming", label: "Upcoming" },
   { to: "/contact", label: "Contact" },
 ];
