@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import NavLink from "../../components/NavLink/NavLink";
 import { NAV_LINKS } from "../../constants/navLinks";
@@ -10,6 +10,10 @@ const SiteHeader = () => {
   const location = useLocation();
 
   const checkScrollPastHero = useCallback(() => {
+    if (location.pathname !== "/") {
+      setShowLogo(true);
+      return;
+    }
     const hero = document.getElementById("about");
     if (!hero) {
       setShowLogo(false);
@@ -17,9 +21,13 @@ const SiteHeader = () => {
     }
     const rect = hero.getBoundingClientRect();
     setShowLogo(rect.bottom <= 0);
-  }, []);
+  }, [location.pathname]);
 
   useScrollManager(checkScrollPastHero);
+
+  useEffect(() => {
+    checkScrollPastHero();
+  }, [location.pathname, checkScrollPastHero]);
 
   const handleLogoClick = (e) => {
     if (location.pathname === "/") {
