@@ -10,6 +10,7 @@ const FeatureCard = () => {
       className={`feature-card${isVisible ? " feature-card--in-view" : ""}`}
       ref={cardRef}
     >
+      <span className="feature-card__label section-heading">UPCOMING CONCERT</span>
       <p className="feature-card__location">PALO ALTO, CA</p>
       <p className="feature-card__date">DECEMBER 2026</p>
       <p className="feature-card__venue">PALO ALTO ARTS CENTER</p>

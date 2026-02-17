@@ -19,6 +19,13 @@
   transform: translate3d(0, 0, 0);
 }
 
+.feature-card__label {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.2rem;
+  color: var(--color-ink);
+}
+
 .feature-card__location {
   margin: 0;
   font-size: 2.4rem;
@@ -29,9 +36,14 @@
 .feature-card__date,
 .feature-card__venue {
   margin: 0;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.2rem;
   text-transform: uppercase;
   color: var(--color-ink);
+}
+
+.feature-card__venue {
+  margin-top: calc(var(--space-3) * -0.5);
 }
 
 .feature-card__details {
