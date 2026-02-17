@@ -5,6 +5,7 @@
   overflow: visible;
   position: relative;
   margin-bottom: var(--space-9);
+  scroll-margin-top: 5rem;
 }
 
 .past-concerts__media {

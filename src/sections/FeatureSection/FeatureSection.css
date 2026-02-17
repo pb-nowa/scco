@@ -2,6 +2,7 @@
   position: relative;
   overflow: visible;
   background: var(--color-bg);
+  scroll-margin-top: calc(5rem - 75px);
 }
 
 .feature__heading-wrap {

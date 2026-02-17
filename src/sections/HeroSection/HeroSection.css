@@ -5,6 +5,7 @@
   position: relative;
   overflow: visible;
   height: 200vh;
+  scroll-margin-top: 5rem;
 }
 
 .hero__grid {

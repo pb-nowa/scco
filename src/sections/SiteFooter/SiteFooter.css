@@ -4,6 +4,7 @@
   padding: var(--space-8) 0 var(--space-6);
   background: var(--color-bg);
   box-shadow: 0 -12px 24px -8px rgb(0 0 0 / 15%);
+  scroll-margin-top: 5rem;
 }
 
 .site-footer__main {
