@@ -1,4 +1,6 @@
+import { useCallback, useRef, useState } from "react";
 import FeatureHeading from "../../components/FeatureHeading/FeatureHeading";
+import useScrollManager from "../../hooks/useScrollManager";
 import ConcertPoster from "./ConcertPoster/ConcertPoster";
 import PastConcertsFooter from "./PastConcertsFooter/PastConcertsFooter";
 import "./PastConcertsShowcase.css";
@@ -32,7 +34,7 @@ const posters = [
   },
   {
     year: "2023",
-    title: "Daydream",
+    title: "Day Dream",
     subtitle: "Shoal Circle Chamber Orchestra",
     image:
       "https://res.cloudinary.com/dhjttb9y2/image/upload/v1769880844/IMG_3970_cw9xeo.png",
@@ -48,35 +50,57 @@ const posters = [
   },
 ];
 
-const PastConcertsShowcase = () => (
-  <>
-    <section id="past-concerts" className="section past-concerts">
-      <div className="past-concerts__media">
-        <div className="layout__container past-concerts__content">
-          <div className="past-concerts__title section-title section-title--past">
-            <FeatureHeading lines={["PAST", "CONCERTS"]} />
-          </div>
-          <div className="past-concerts__rules" aria-hidden="true">
-            <span className="past-concerts__rule" />
-            <span className="past-concerts__rule" />
-            <span className="past-concerts__rule" />
+const PastConcertsShowcase = () => {
+  const rulesRef = useRef(null);
+  const [rulesInView, setRulesInView] = useState(false);
+
+  const checkRulesInView = useCallback(() => {
+    if (rulesInView || typeof window === "undefined") return;
+    const el = rulesRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const threshold = window.innerHeight * 0.85;
+    if (rect.top < threshold) {
+      setRulesInView(true);
+    }
+  }, [rulesInView]);
+
+  useScrollManager(checkRulesInView, { runOnInit: true });
+
+  return (
+    <>
+      <section id="past-concerts" className="section past-concerts">
+        <div className="past-concerts__media">
+          <div className="layout__container past-concerts__content">
+            <div className="past-concerts__title section-title section-title--past">
+              <FeatureHeading lines={["PAST", "CONCERTS"]} />
+            </div>
+            <div
+              ref={rulesRef}
+              className={`past-concerts__rules${rulesInView ? " past-concerts__rules--in-view" : ""}`}
+              aria-hidden="true"
+            >
+              <span className="past-concerts__rule" />
+              <span className="past-concerts__rule" />
+              <span className="past-concerts__rule" />
+            </div>
           </div>
         </div>
-      </div>
-      <div className="past-concerts__posters">
-        {posters.map((poster) => (
-          <ConcertPoster
-            key={poster.title}
-            year={poster.year}
-            title={poster.title}
-            image={poster.image}
-            program={poster.program}
-          />
-        ))}
-      </div>
-    </section>
-    <PastConcertsFooter />
-  </>
-);
+        <div className="past-concerts__posters">
+          {posters.map((poster) => (
+            <ConcertPoster
+              key={poster.title}
+              year={poster.year}
+              title={poster.title}
+              image={poster.image}
+              program={poster.program}
+            />
+          ))}
+        </div>
+      </section>
+      <PastConcertsFooter />
+    </>
+  );
+};
 
 export default PastConcertsShowcase;
