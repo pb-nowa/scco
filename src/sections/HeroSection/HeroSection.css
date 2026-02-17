@@ -49,7 +49,7 @@
   height: 100%;
 }
 
-/* Page-load fade-in from top */
+/* Page-load fade-in from top (delayed until load screen finishes: 2s circle + 0.4s fade) */
 .hero__title span,
 .hero__location,
 .hero__label,
@@ -57,7 +57,7 @@
 .hero__cta {
   opacity: 0;
   transform: translateY(-24px);
-  animation: hero__fade-in-from-top 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: hero__fade-in-from-top 2s cubic-bezier(0.22, 1, 0.36, 1) 2.4s forwards;
 }
 
 
@@ -72,6 +72,22 @@
   }
 }
 
+/* Revisit: skip animations when returning to home */
+.hero--revisit .hero__title span,
+.hero--revisit .hero__location,
+.hero--revisit .hero__label,
+.hero--revisit .hero__event,
+.hero--revisit .hero__cta {
+  opacity: 1;
+  transform: translateY(0);
+  animation: none;
+}
+
+.hero--revisit .hero__circle-video-wrap {
+  --hero-video-fade: 1;
+  animation: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero__title span,
   .hero__location,
@@ -80,6 +96,11 @@
   .hero__cta {
     opacity: 1;
     transform: translateY(0);
+    animation: none;
+  }
+
+  .hero__circle-video-wrap {
+    --hero-video-fade: 1;
     animation: none;
   }
 }
@@ -182,6 +203,18 @@
   pointer-events: none;
 }
 
+@property --hero-video-fade {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: true;
+}
+
+.hero__circle-video-wrap {
+  position: absolute;
+  inset: 0;
+  animation: hero__video-fade-in 6s cubic-bezier(0.22, 1, 0.36, 1) 3.0s both;
+}
+
 .hero__circle-video {
   position: absolute;
   inset: 0;
@@ -189,7 +222,16 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  opacity: var(--hero-video-opacity, 0.2);
+  opacity: calc(var(--hero-video-opacity, 0.2) * var(--hero-video-fade, 0));
+}
+
+@keyframes hero__video-fade-in {
+  from {
+    --hero-video-fade: 0;
+  }
+  to {
+    --hero-video-fade: 1;
+  }
 }
 
 @media (max-width: 900px) {

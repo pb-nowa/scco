@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { LenisProvider } from "./components/LenisProvider/LenisProvider";
+import LoadScreen from "./components/LoadScreen/LoadScreen";
+import { FirstLoadProvider } from "./context/FirstLoadContext";
 import { PageTransitionProvider } from "./context/PageTransitionContext";
 import { usePageTransitionClickHandler } from "./hooks/usePageTransitionClickHandler";
 import { useScrollTo } from "./context/ScrollToContext";
@@ -45,8 +47,10 @@ function ScrollToTopOnLogo() {
 
 function App() {
   return (
+    <FirstLoadProvider>
     <PageTransitionProvider>
       <PageTransitionHandler />
+      <LoadScreen />
       <LenisProvider>
         <div className="layout">
           <SiteHeader />
@@ -61,6 +65,7 @@ function App() {
         </div>
       </LenisProvider>
     </PageTransitionProvider>
+    </FirstLoadProvider>
   );
 }
 

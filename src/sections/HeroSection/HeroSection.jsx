@@ -1,11 +1,17 @@
 import { useCallback, useEffect, useRef } from "react";
 import LinkCta from "../../components/LinkCta/LinkCta";
+import { useFirstLoad } from "../../context/FirstLoadContext";
 import useScrollManager from "../../hooks/useScrollManager";
 import { getScrollY } from "../../utils/scrollPosition";
 import "./HeroSection.css";
 
+const LOAD_SCREEN_DURATION_MS = 2400; // 2s circle + 0.4s fade
+const LOAD_SCREEN_DURATION_REDUCED_MS = 800;
+
 const HeroSection = () => {
+  const { isFirstLoad } = useFirstLoad();
   const heroRef = useRef(null);
+  const videoRef = useRef(null);
 
   const applyHeroStyles = useCallback((opacity, scale) => {
     const section = heroRef.current;
@@ -47,13 +53,32 @@ const HeroSection = () => {
     }
   }, [applyHeroStyles, prefersReducedMotion]);
 
+  useEffect(() => {
+    if (!isFirstLoad) {
+      videoRef.current?.play();
+      return;
+    }
+    const duration = prefersReducedMotion
+      ? LOAD_SCREEN_DURATION_REDUCED_MS
+      : LOAD_SCREEN_DURATION_MS;
+    const timer = setTimeout(() => {
+      videoRef.current?.play();
+    }, duration);
+    return () => clearTimeout(timer);
+  }, [isFirstLoad, prefersReducedMotion]);
+
   return (
-    <section className="hero section" id="about" ref={heroRef}>
+    <section
+      className={`hero section ${!isFirstLoad ? "hero--revisit" : ""}`}
+      id="about"
+      ref={heroRef}
+    >
       <div className="hero__circle" aria-hidden="true">
         <div className="hero__circle-frame">
+          <div className="hero__circle-video-wrap">
           <video
+            ref={videoRef}
             className="hero__circle-video"
-            autoPlay
             muted
             loop
             playsInline
@@ -65,6 +90,7 @@ const HeroSection = () => {
               type="video/mp4"
             />
           </video>
+          </div>
         </div>
       </div>
       <div className="layout__container hero__grid">
