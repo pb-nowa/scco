@@ -1,10 +1,18 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { PageTransitionProvider } from "./context/PageTransitionContext";
+import { usePageTransitionClickHandler } from "./hooks/usePageTransitionClickHandler";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
 import SiteFooter from "./sections/SiteFooter/SiteFooter";
 import SiteHeader from "./sections/SiteHeader/SiteHeader";
+
+function PageTransitionHandler() {
+  usePageTransitionClickHandler();
+  return null;
+}
+
 
 function ScrollToHash() {
   const { hash } = useLocation();
@@ -32,9 +40,11 @@ function App() {
   }, [pathname, state?.fromLogo, navigate]);
 
   return (
-    <div className="layout">
-      <SiteHeader />
-      <ScrollToHash />
+    <PageTransitionProvider>
+      <PageTransitionHandler />
+      <div className="layout">
+        <SiteHeader />
+        <ScrollToHash />
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -44,6 +54,7 @@ function App() {
 
       <SiteFooter />
     </div>
+    </PageTransitionProvider>
   );
 }
 

@@ -1,0 +1,39 @@
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.page-transition__layer {
+  position: absolute;
+  inset: 0;
+  transform: translateY(100%);
+  will-change: transform;
+}
+
+.page-transition__layer--pink {
+  background: var(--color-bg);
+  animation: page-transition__swipe-then-reveal 1.0s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.page-transition__layer--blue {
+  background: var(--color-accent);
+  animation: page-transition__swipe-then-reveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+}
+
+@keyframes page-transition__swipe-then-reveal {
+  0% {
+    transform: translateY(100%);
+  }
+  25% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
