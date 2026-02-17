@@ -1,7 +1,13 @@
 const subscribers = new Set();
 let ticking = false;
+let frameCount = 0;
 
 const notifySubscribers = () => {
+  frameCount += 1;
+  if (frameCount % 2 !== 0) {
+    ticking = false;
+    return;
+  }
   ticking = false;
   subscribers.forEach((callback) => {
     callback();

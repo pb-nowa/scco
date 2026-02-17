@@ -11,16 +11,27 @@ const DEFAULT_IMAGE =
 const PastConcertsFooter = ({ src = DEFAULT_IMAGE, alt = "Past concerts background" }) => {
   const containerRef = useRef(null);
   const wrapperRef = useRef(null);
+  const isInViewRef = useRef(false);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isInViewRef.current = entry.isIntersecting;
+      },
+      { rootMargin: "100px", threshold: 0 }
+    );
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
 
   const updateParallax = useCallback(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
+    if (typeof window === "undefined" || !isInViewRef.current) return;
     const container = containerRef.current;
     const wrapper = wrapperRef.current;
-    if (!container || !wrapper) {
-      return;
-    }
+    if (!container || !wrapper) return;
+
     const rect = container.getBoundingClientRect();
     const viewportHeight = window.innerHeight || 0;
     const start = viewportHeight;
