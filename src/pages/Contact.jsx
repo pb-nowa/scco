@@ -1,36 +1,91 @@
-import LinkCta from "../components/LinkCta/LinkCta";
-import NavLink from "../components/NavLink/NavLink";
+import { useState } from "react";
 import "./Contact.css";
 
-const Contact = () => (
-  <main className="contact-page">
-    <section className="contact-page__main section">
-      <div className="layout__container">
-        <h1 className="contact-page__heading section-heading">
-          Let's make some music!
-        </h1>
-        <p className="contact-page__message">
-          We'd love to hear from you! Reach out for inquiries about joining the
-          orchestra or future concerts.
-        </p>
-        <LinkCta className="cta--feature" href="mailto:info@shoalcirclechamberorchestra.org">
-          Contact us
-        </LinkCta>
-      </div>
-    </section>
-    <section className="contact-page__social section">
-      <div className="layout__container">
-        <span className="contact-page__social-label section-heading">
-          Follow us on social media
-        </span>
-        <nav className="contact-page__links" aria-label="Social media">
-          <NavLink href="#" className="contact-page__link">Instagram</NavLink>
-          <NavLink href="#" className="contact-page__link">YouTube</NavLink>
-          <NavLink href="#" className="contact-page__link">SoundCloud</NavLink>
-        </nav>
-      </div>
-    </section>
+const Contact = () => {
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactMessage, setContactMessage] = useState("");
+
+  const handleNewsletterSubmit = (e) => {
+    e.preventDefault();
+    // TODO: wire up newsletter subscription
+  };
+
+  const handleContactSubmit = (e) => {
+    e.preventDefault();
+    // TODO: wire up contact form submission
+  };
+
+  return (
+    <main className="contact-page">
+      <section className="contact-page__forms section">
+        <div className="layout__container">
+          <div className="contact-page__forms-grid section-split__grid">
+            <div className="section-split__left">
+              <form
+                className="contact-form contact-form--newsletter"
+                onSubmit={handleNewsletterSubmit}
+                aria-labelledby="newsletter-heading"
+              >
+                <h2 id="newsletter-heading" className="contact-form__heading section-heading">
+                  Stay Connected
+                </h2>
+                <p className="contact-form__description">
+                  Stay tuned for performances, releases, and news.
+                </p>
+                <div className="contact-form__row">
+                  <input
+                    type="email"
+                    className="contact-form__input"
+                    placeholder="Your email"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    required
+                    aria-label="Email address"
+                  />
+                  <button type="submit" className="contact-form__submit contact-form__submit--newsletter">
+                    Subscribe
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div className="section-split__right">
+              <form
+                className="contact-form contact-form--contact"
+                onSubmit={handleContactSubmit}
+                aria-labelledby="contact-heading"
+              >
+                <h2 id="contact-heading" className="contact-form__heading section-heading">
+                  Contact us
+                </h2>
+                <input
+                  type="email"
+                  className="contact-form__input"
+                  placeholder="Your email"
+                  value={contactEmail}
+                  onChange={(e) => setContactEmail(e.target.value)}
+                  required
+                  aria-label="Email address"
+                />
+                <textarea
+                  className="contact-form__textarea"
+                  placeholder="Your message"
+                  value={contactMessage}
+                  onChange={(e) => setContactMessage(e.target.value)}
+                  required
+                  rows={5}
+                  aria-label="Message"
+                />
+                <button type="submit" className="contact-form__submit contact-form__submit--contact">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
   </main>
-);
+  );
+};
 
 export default Contact;
