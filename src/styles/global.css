@@ -48,13 +48,12 @@ main {
   padding: var(--space-4) 0;
 }
 
-.section[id],
 #contact {
   scroll-margin-top: 6rem;
 }
 
 #upcoming {
-  scroll-margin-top: calc(6rem - 75px);
+  scroll-margin-top: calc(6rem - 100px);
 }
 
 .section--muted {

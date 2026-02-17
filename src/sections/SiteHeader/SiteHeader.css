@@ -15,7 +15,23 @@
   padding: var(--space-7) var(--space-8);
 }
 
+.site-header__left {
+  flex: 1;
+}
+
+.site-header__logo {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: var(--font-size-sm);
+}
+
+.site-header__logo:hover {
+  color: var(--color-text-secondary);
+}
+
 .site-header__nav {
+  margin-left: auto;
   display: flex;
   gap: var(--space-4);
   font-size: var(--font-size-sm);

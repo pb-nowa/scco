@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
@@ -21,6 +21,16 @@ function ScrollToHash() {
 }
 
 function App() {
+  const { pathname, state } = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (pathname === "/" && state?.fromLogo) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      navigate("/", { replace: true, state: {} });
+    }
+  }, [pathname, state?.fromLogo, navigate]);
+
   return (
     <div className="layout">
       <SiteHeader />
