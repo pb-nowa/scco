@@ -9,10 +9,9 @@ const useScrollReveal = (options = {}) => {
     threshold = DEFAULT_THRESHOLD,
     requireScrollDirection = "down",
     once = true,
-    runOnInit = false,
   } = options;
   const targetRef = useRef(null);
-  const lastScrollY = useRef(0);
+  const lastScrollY = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
   const updateVisibility = useCallback(() => {
@@ -26,15 +25,17 @@ const useScrollReveal = (options = {}) => {
     }
 
     const currentScrollY = getScrollY();
-    const scrollDelta = currentScrollY - lastScrollY.current;
+    const isInitialRun = lastScrollY.current === null;
+    const scrollDelta = currentScrollY - (lastScrollY.current ?? currentScrollY);
     lastScrollY.current = currentScrollY;
 
-    if (requireScrollDirection === "down" && scrollDelta <= 0) {
-      return;
-    }
-
-    if (requireScrollDirection === "up" && scrollDelta >= 0) {
-      return;
+    if (!isInitialRun) {
+      if (requireScrollDirection === "down" && scrollDelta <= 0) {
+        return;
+      }
+      if (requireScrollDirection === "up" && scrollDelta >= 0) {
+        return;
+      }
     }
 
     if (once && isVisible) {
@@ -53,7 +54,7 @@ const useScrollReveal = (options = {}) => {
   }, [isVisible, once, requireScrollDirection, threshold]);
 
   const prefersReducedMotion = useScrollManager(updateVisibility, {
-    runOnInit,
+    runOnInit: true,
   });
 
   useEffect(() => {
@@ -61,6 +62,24 @@ const useScrollReveal = (options = {}) => {
       setIsVisible(true);
     }
   }, [prefersReducedMotion]);
+
+  useEffect(() => {
+    const target = targetRef.current;
+    if (!target) return;
+
+    const checkInitialVisibility = () => {
+      const rect = target.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || 0;
+      const isInView =
+        rect.top <= viewportHeight * threshold && rect.bottom >= 0;
+      if (isInView) {
+        setIsVisible(true);
+      }
+    };
+
+    const raf = requestAnimationFrame(checkInitialVisibility);
+    return () => cancelAnimationFrame(raf);
+  }, [threshold]);
 
   return { ref: targetRef, isVisible };
 };

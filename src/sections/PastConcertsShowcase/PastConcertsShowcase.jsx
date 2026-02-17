@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import FeatureHeading from "../../components/FeatureHeading/FeatureHeading";
 import useScrollManager from "../../hooks/useScrollManager";
 import ConcertPoster from "./ConcertPoster/ConcertPoster";
@@ -66,6 +66,23 @@ const PastConcertsShowcase = () => {
   }, [rulesInView]);
 
   useScrollManager(checkRulesInView, { runOnInit: true });
+
+  useEffect(() => {
+    const el = rulesRef.current;
+    if (!el) return;
+
+    const checkInitial = () => {
+      if (rulesInView) return;
+      const rect = el.getBoundingClientRect();
+      const threshold = window.innerHeight * 1.2;
+      if (rect.top < threshold) {
+        setRulesInView(true);
+      }
+    };
+
+    const raf = requestAnimationFrame(checkInitial);
+    return () => cancelAnimationFrame(raf);
+  }, [rulesInView]);
 
   return (
     <>
