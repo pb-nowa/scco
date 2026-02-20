@@ -359,9 +359,8 @@ const About = () => {
           <section className="about-page__scroll-section" ref={setSectionRef(1)}>
             <div className="about-page__scroll-panel">
               <p className="about-page__text about-page__text--section-2">
-                SCCO was founded in 2022 by a group of friends who began playing
-                music together in a living room in the San Francisco Peninsula.
-                What started informally has grown into an annual community
+                SCCO was founded in 2022 by a group of friends on the San Francisco Peninsula who began playing
+                music together in their living room. What started informally has grown into an annual community
                 concert shaped entirely by amateur musicians.
               </p>
               <div
@@ -389,7 +388,7 @@ const About = () => {
                 Because the ensemble&apos;s instrumentation changes from year to
                 year, the repertoire extends well beyond the traditional chamber
                 orchestra canon. Programs are playful, eclectic, and sometimes
-                experimental moving fluidly between classical works, jazz, pop,
+                experimental -- moving fluidly between classical works, jazz, pop,
                 film music, Latin styles, and other genres depending on the
                 group&apos;s unique combination of instruments and skill levels.
               </p>

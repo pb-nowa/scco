@@ -98,6 +98,8 @@
 
 .about-page__content .layout__container {
   max-width: min(400px, 80vw);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .about-page__scroll-section {
@@ -106,14 +108,15 @@
   position: relative;
 }
 
-.about-page__scroll-section:first-child {
-  padding-top: 0;
+.about-page__scroll-section:first-of-type {
+  padding-top: calc(var(--space-9) + var(--space-4));
   min-height: 225vh;
 }
 
 .about-page__scroll-panel {
   position: sticky;
-  top: clamp(12rem, 30vh, 18rem);
+  top: 50vh;
+  transform: translateY(-50%);
   z-index: 2;
   opacity: var(--about-section-opacity);
   transition: opacity 180ms linear;
@@ -141,7 +144,7 @@
   font-weight: 400;
   line-height: 1.5;
   color: var(--color-ink);
-  text-align: left;
+  text-align: center;
 }
 
 .about-page__lead {
@@ -166,6 +169,8 @@
   --about-line-reveal: 0;
   display: block;
   width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
   background-image: linear-gradient(90deg, var(--color-ink), var(--color-ink));
   background-size: calc(var(--about-line-reveal) * 100%) 100%;
   background-repeat: no-repeat;
@@ -184,6 +189,7 @@
   --about-cta-opacity: 0;
   opacity: var(--about-cta-opacity);
   transition: opacity 220ms linear;
+  text-align: center;
 }
 
 .about-page__separator {
@@ -294,14 +300,14 @@
   }
 
   .about-page__scroll-panel {
-    top: clamp(10rem, 24vh, 14rem);
+    top: 50vh;
   }
 
   .about-page__scroll-section {
     min-height: 175vh;
   }
 
-  .about-page__scroll-section:first-child {
+  .about-page__scroll-section:first-of-type {
     min-height: 210vh;
   }
 
