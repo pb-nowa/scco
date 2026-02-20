@@ -105,7 +105,7 @@
     black var(--load-screen-draw-angle),
     transparent var(--load-screen-draw-angle)
   );
-  animation: load-screen__draw-circle 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: load-screen__draw-circle 2s cubic-bezier(0.45, 0, 0.55, 1) forwards;
 }
 
 @media (max-width: 900px) {
