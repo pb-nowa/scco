@@ -45,6 +45,19 @@ function ScrollToTopOnLogo() {
   return null;
 }
 
+function ScrollToTopOnAbout() {
+  const { pathname } = useLocation();
+  const scrollTo = useScrollTo();
+
+  useEffect(() => {
+    if (pathname === "/about" && scrollTo) {
+      scrollTo(0);
+    }
+  }, [pathname, scrollTo]);
+
+  return null;
+}
+
 function App() {
   return (
     <FirstLoadProvider>
@@ -56,6 +69,7 @@ function App() {
           <SiteHeader />
           <ScrollToHash />
           <ScrollToTopOnLogo />
+          <ScrollToTopOnAbout />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
