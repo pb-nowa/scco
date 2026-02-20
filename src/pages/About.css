@@ -98,13 +98,13 @@
 
 .about-page__scroll-section {
   --about-section-opacity: 1;
-  min-height: 155vh;
+  min-height: 190vh;
   position: relative;
 }
 
 .about-page__scroll-section:first-child {
   padding-top: 0;
-  min-height: 190vh;
+  min-height: 225vh;
 }
 
 .about-page__scroll-panel {
@@ -152,6 +152,68 @@
   margin: var(--space-4) 0 var(--space-6);
 }
 
+.about-page__text {
+  color: transparent;
+  text-shadow: 0 0 0 color-mix(in srgb, var(--color-ink) 36%, transparent);
+}
+
+.about-page__text-line {
+  --about-line-reveal: 0;
+  display: block;
+  width: fit-content;
+  background-image: linear-gradient(90deg, var(--color-ink), var(--color-ink));
+  background-size: calc(var(--about-line-reveal) * 100%) 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-size 160ms linear;
+}
+
+.about-page__word {
+  display: inline;
+}
+
+.about-page__cta {
+  margin-top: var(--space-7);
+  --about-cta-opacity: 0;
+  opacity: var(--about-cta-opacity);
+  transition: opacity 220ms linear;
+}
+
+.about-page__section-indicator {
+  --about-section-indicator-opacity: 1;
+  position: fixed;
+  right: var(--space-6);
+  bottom: var(--space-6);
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+  opacity: var(--about-section-indicator-opacity);
+  transition: opacity 220ms linear;
+}
+
+.about-page__section-indicator-top,
+.about-page__section-indicator-bottom {
+  text-align: center;
+  line-height: 1;
+}
+
+.about-page__section-indicator-line {
+  display: block;
+  width: 1em;
+  height: 1px;
+  background: var(--color-ink);
+}
+
 @media (max-width: 900px) {
   .about-page__circle-frame {
     width: clamp(260px, 72vw, 520px);
@@ -169,5 +231,22 @@
 
   .about-page__scroll-panel {
     top: clamp(10rem, 24vh, 14rem);
+  }
+
+  .about-page__scroll-section {
+    min-height: 175vh;
+  }
+
+  .about-page__scroll-section:first-child {
+    min-height: 210vh;
+  }
+
+  .about-page__cta {
+    margin-top: var(--space-6);
+  }
+
+  .about-page__section-indicator {
+    right: var(--space-4);
+    bottom: var(--space-4);
   }
 }

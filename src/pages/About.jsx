@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import LinkCta from "../components/LinkCta/LinkCta";
 import useScrollManager from "../hooks/useScrollManager";
 import { getScrollY } from "../utils/scrollPosition";
 import "./About.css";
@@ -8,9 +9,68 @@ const About = () => {
   const titleRef = useRef(null);
   const circleRef = useRef(null);
   const introImageRef = useRef(null);
+  const ctaRef = useRef(null);
+  const sectionIndicatorRef = useRef(null);
+  const activeSectionRef = useRef(1);
+  const [activeSection, setActiveSection] = useState(1);
 
   const setSectionRef = useCallback((index) => (node) => {
     sectionRefs.current[index] = node;
+  }, []);
+
+  const rebuildTextLines = useCallback(() => {
+    sectionRefs.current.forEach((section) => {
+      if (!section) {
+        return;
+      }
+
+      const textElements = section.querySelectorAll(".about-page__text");
+      textElements.forEach((textElement) => {
+        const existingOriginalText = textElement.dataset.aboutOriginalText;
+        const originalText =
+          existingOriginalText ??
+          textElement.textContent?.replace(/\s+/g, " ").trim() ??
+          "";
+
+        textElement.dataset.aboutOriginalText = originalText;
+
+        const words = originalText.split(" ").filter(Boolean);
+        textElement.innerHTML = "";
+        words.forEach((word, wordIndex) => {
+          const wordNode = document.createElement("span");
+          wordNode.className = "about-page__word";
+          const isLastWord = wordIndex === words.length - 1;
+          wordNode.textContent = isLastWord ? word : `${word} `;
+          textElement.appendChild(wordNode);
+        });
+
+        const wordNodes = Array.from(textElement.querySelectorAll(".about-page__word"));
+        const lines = [];
+        let currentLineTop = null;
+
+        wordNodes.forEach((wordNode) => {
+          const wordTop = wordNode.offsetTop;
+          if (currentLineTop === null || Math.abs(wordTop - currentLineTop) > 1) {
+            currentLineTop = wordTop;
+            lines.push([]);
+          }
+          lines[lines.length - 1].push(wordNode);
+        });
+
+        const fragment = document.createDocumentFragment();
+        lines.forEach((lineWords, lineIndex) => {
+          const lineNode = document.createElement("span");
+          lineNode.className = "about-page__text-line";
+          lineNode.dataset.aboutLineIndex = String(lineIndex);
+          lineWords.forEach((lineWord) => lineNode.appendChild(lineWord));
+          fragment.appendChild(lineNode);
+        });
+
+        textElement.innerHTML = "";
+        textElement.appendChild(fragment);
+        textElement.style.setProperty("--about-line-count", String(lines.length));
+      });
+    });
   }, []);
 
   const updateSectionFade = useCallback(() => {
@@ -57,6 +117,11 @@ const About = () => {
       circle.style.setProperty("--about-circle-frame-scale", frameScale.toFixed(4));
     }
 
+    let nextActiveSection = activeSectionRef.current;
+    let nearestSectionDistance = Number.POSITIVE_INFINITY;
+
+    let ctaVisibilityFactor = 1;
+
     sectionRefs.current.forEach((section, index) => {
       if (!section) {
         return;
@@ -68,18 +133,68 @@ const About = () => {
         1,
         Math.max(0, (viewportHeight - rect.top) / rect.height)
       );
+      const viewportMidpoint = viewportHeight * 0.5;
+      const isMidpointInsideSection =
+        rect.top <= viewportMidpoint && rect.bottom >= viewportMidpoint;
+      const sectionDistance = isMidpointInsideSection
+        ? 0
+        : Math.min(
+            Math.abs(rect.top - viewportMidpoint),
+            Math.abs(rect.bottom - viewportMidpoint)
+          );
+      if (sectionDistance < nearestSectionDistance) {
+        nearestSectionDistance = sectionDistance;
+        nextActiveSection = index + 1;
+      }
 
       // Fade each section in on entry and fade the first two sections out on exit.
       const fadeInOpacity = index === 0 ? 1 : Math.min(1, progress / 0.22);
       let fadeOutOpacity = 1;
-      const fadeOutStart = 0.7;
+      const fadeOutStart = 0.9;
+      const fadeOutDuration = 0.09;
       if (index < 3 && progress > fadeOutStart) {
-        fadeOutOpacity = Math.max(0, 1 - (progress - fadeOutStart) / 0.22);
+        fadeOutOpacity = Math.max(
+          0,
+          1 - (progress - fadeOutStart) / fadeOutDuration
+        );
       }
       const opacity = Math.min(fadeInOpacity, fadeOutOpacity);
 
       section.style.setProperty("--about-section-opacity", opacity.toFixed(3));
+
+      const textRevealProgress = Math.min(1, Math.max(0, (progress - 0.08) / 0.72));
+      const sectionTextElements = section.querySelectorAll(".about-page__text");
+      sectionTextElements.forEach((textElement) => {
+        const lineElements = textElement.querySelectorAll(".about-page__text-line");
+        const lineCount = lineElements.length || 1;
+        const sequentialProgress = textRevealProgress * lineCount;
+
+        lineElements.forEach((lineElement, lineIndex) => {
+          const lineReveal = Math.min(
+            1,
+            Math.max(0, sequentialProgress - lineIndex)
+          );
+          lineElement.style.setProperty("--about-line-reveal", lineReveal.toFixed(3));
+        });
+      });
+
+      if (index === 3 && ctaRef.current) {
+        const ctaRevealProgress = Math.min(
+          1,
+          Math.max(0, (progress - 0.78) / 0.16)
+        );
+        ctaRef.current.style.setProperty(
+          "--about-cta-opacity",
+          ctaRevealProgress.toFixed(3)
+        );
+        ctaVisibilityFactor = 1 - ctaRevealProgress;
+      }
     });
+
+    if (nextActiveSection !== activeSectionRef.current) {
+      activeSectionRef.current = nextActiveSection;
+      setActiveSection(nextActiveSection);
+    }
 
     const introImage = introImageRef.current;
     if (introImage) {
@@ -89,10 +204,46 @@ const About = () => {
       const fadeProgress = distancePastTop / fadeDistancePx;
       const imageOpacity = Math.max(0, Math.min(1, 1 - fadeProgress));
       introImage.style.setProperty("--about-intro-image-opacity", imageOpacity.toFixed(3));
+
+      const indicatorVisibilityFromImage = Math.min(
+        1,
+        Math.max(0, (fadeProgress - 0.92) / 0.08)
+      );
+      const indicatorOpacity = indicatorVisibilityFromImage * ctaVisibilityFactor;
+      sectionIndicatorRef.current?.style.setProperty(
+        "--about-section-indicator-opacity",
+        indicatorOpacity.toFixed(3)
+      );
     }
   }, []);
 
   const prefersReducedMotion = useScrollManager(updateSectionFade);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return undefined;
+    }
+
+    const runRebuild = () => {
+      rebuildTextLines();
+      updateSectionFade();
+    };
+
+    const rafId = window.requestAnimationFrame(runRebuild);
+    const handleResize = () => {
+      window.requestAnimationFrame(runRebuild);
+    };
+
+    window.addEventListener("resize", handleResize);
+    document.fonts?.ready.then(() => {
+      runRebuild();
+    });
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [rebuildTextLines, updateSectionFade]);
 
   useEffect(() => {
     if (!prefersReducedMotion) {
@@ -101,7 +252,21 @@ const About = () => {
 
     sectionRefs.current.forEach((section) => {
       section?.style.setProperty("--about-section-opacity", "1");
+      const sectionTextElements = section?.querySelectorAll(".about-page__text");
+      sectionTextElements?.forEach((textElement) => {
+        const lineElements = textElement.querySelectorAll(".about-page__text-line");
+        lineElements.forEach((lineElement) => {
+          lineElement.style.setProperty("--about-line-reveal", "1");
+        });
+      });
     });
+    activeSectionRef.current = 1;
+    setActiveSection(1);
+    ctaRef.current?.style.setProperty("--about-cta-opacity", "1");
+    sectionIndicatorRef.current?.style.setProperty(
+      "--about-section-indicator-opacity",
+      "0"
+    );
     introImageRef.current?.style.setProperty("--about-intro-image-opacity", "1");
 
     const circle = circleRef.current;
@@ -187,10 +352,22 @@ const About = () => {
                 a community performance open to friends, families, and community
                 members.
               </p>
+              <div className="about-page__cta" ref={ctaRef}>
+                <LinkCta href="#upcoming">Get concert updates</LinkCta>
+              </div>
             </div>
           </section>
         </div>
       </section>
+      <div
+        className="about-page__section-indicator"
+        aria-hidden="true"
+        ref={sectionIndicatorRef}
+      >
+        <span className="about-page__section-indicator-top">{activeSection}</span>
+        <span className="about-page__section-indicator-line" />
+        <span className="about-page__section-indicator-bottom">4</span>
+      </div>
     </main>
   );
 };
