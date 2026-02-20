@@ -4,8 +4,19 @@ import useScrollManager from "../hooks/useScrollManager";
 import { getScrollY } from "../utils/scrollPosition";
 import "./About.css";
 
+const CLOUDINARY_BASE_URL =
+  "https://res.cloudinary.com/dhjttb9y2/image/upload/f_auto,q_auto/";
+
+const SECTION_PHOTO_IDS = [
+  null,
+  ["IMG_0154_fsfcsa", "IMG_7702_q0vwni"],
+  ["IMG_7702_nyiojq", "IMG_0154_fsfcsa"],
+  ["IMG_6767_qmnto6", "IMG_6304_vblfjn"],
+];
+
 const About = () => {
   const sectionRefs = useRef([]);
+  const sectionPhotoRefs = useRef([]);
   const titleRef = useRef(null);
   const circleRef = useRef(null);
   const introImageRef = useRef(null);
@@ -16,6 +27,10 @@ const About = () => {
 
   const setSectionRef = useCallback((index) => (node) => {
     sectionRefs.current[index] = node;
+  }, []);
+
+  const setSectionPhotoRef = useCallback((index) => (node) => {
+    sectionPhotoRefs.current[index] = node;
   }, []);
 
   const rebuildTextLines = useCallback(() => {
@@ -121,6 +136,7 @@ const About = () => {
     let nearestSectionDistance = Number.POSITIVE_INFINITY;
 
     let ctaVisibilityFactor = 1;
+    let circleOpacity = 1;
 
     sectionRefs.current.forEach((section, index) => {
       if (!section) {
@@ -178,6 +194,18 @@ const About = () => {
         });
       });
 
+      const sectionPhotoGroup = sectionPhotoRefs.current[index];
+      if (sectionPhotoGroup) {
+        const photoRevealProgress = Math.min(
+          1,
+          Math.max(0, progress / 0.16)
+        );
+        sectionPhotoGroup.style.setProperty(
+          "--about-section-photo-opacity",
+          photoRevealProgress.toFixed(3)
+        );
+      }
+
       if (index === 3 && ctaRef.current) {
         const ctaRevealProgress = Math.min(
           1,
@@ -188,8 +216,14 @@ const About = () => {
           ctaRevealProgress.toFixed(3)
         );
         ctaVisibilityFactor = 1 - ctaRevealProgress;
+        circleOpacity = 1 - ctaRevealProgress;
       }
     });
+
+    const circleEl = circleRef.current;
+    if (circleEl) {
+      circleEl.style.setProperty("--about-circle-opacity", circleOpacity.toFixed(3));
+    }
 
     if (nextActiveSection !== activeSectionRef.current) {
       activeSectionRef.current = nextActiveSection;
@@ -260,6 +294,9 @@ const About = () => {
         });
       });
     });
+    sectionPhotoRefs.current.forEach((photoGroup) => {
+      photoGroup?.style.setProperty("--about-section-photo-opacity", "1");
+    });
     activeSectionRef.current = 1;
     setActiveSection(1);
     ctaRef.current?.style.setProperty("--about-cta-opacity", "1");
@@ -271,6 +308,7 @@ const About = () => {
 
     const circle = circleRef.current;
     if (circle) {
+      circle.style.setProperty("--about-circle-opacity", "1");
       circle.style.setProperty("--about-circle-wave-scale-primary", "1");
       circle.style.setProperty("--about-circle-wave-scale-secondary", "1");
       circle.style.setProperty("--about-circle-wave-opacity-primary", "0.07");
@@ -326,6 +364,22 @@ const About = () => {
                 What started informally has grown into an annual community
                 concert shaped entirely by amateur musicians.
               </p>
+              <div
+                className="about-page__section-photos"
+                ref={setSectionPhotoRef(1)}
+                aria-hidden="true"
+              >
+                <img
+                  className="about-page__section-photo about-page__section-photo--left"
+                  src={`${CLOUDINARY_BASE_URL}${SECTION_PHOTO_IDS[1][0]}.jpg`}
+                  alt=""
+                />
+                <img
+                  className="about-page__section-photo about-page__section-photo--right"
+                  src={`${CLOUDINARY_BASE_URL}${SECTION_PHOTO_IDS[1][1]}.jpg`}
+                  alt=""
+                />
+              </div>
             </div>
           </section>
 
@@ -339,6 +393,22 @@ const About = () => {
                 film music, Latin styles, and other genres depending on the
                 group&apos;s unique combination of instruments and skill levels.
               </p>
+              <div
+                className="about-page__section-photos"
+                ref={setSectionPhotoRef(2)}
+                aria-hidden="true"
+              >
+                <img
+                  className="about-page__section-photo about-page__section-photo--left"
+                  src={`${CLOUDINARY_BASE_URL}${SECTION_PHOTO_IDS[2][0]}.jpg`}
+                  alt=""
+                />
+                <img
+                  className="about-page__section-photo about-page__section-photo--right"
+                  src={`${CLOUDINARY_BASE_URL}${SECTION_PHOTO_IDS[2][1]}.jpg`}
+                  alt=""
+                />
+              </div>
             </div>
           </section>
 
@@ -352,6 +422,22 @@ const About = () => {
                 a community performance open to friends, families, and community
                 members.
               </p>
+              <div
+                className="about-page__section-photos"
+                ref={setSectionPhotoRef(3)}
+                aria-hidden="true"
+              >
+                <img
+                  className="about-page__section-photo about-page__section-photo--left"
+                  src={`${CLOUDINARY_BASE_URL}${SECTION_PHOTO_IDS[3][0]}.jpg`}
+                  alt=""
+                />
+                <img
+                  className="about-page__section-photo about-page__section-photo--right"
+                  src={`${CLOUDINARY_BASE_URL}${SECTION_PHOTO_IDS[3][1]}.jpg`}
+                  alt=""
+                />
+              </div>
               <div className="about-page__cta" ref={ctaRef}>
                 <LinkCta href="#upcoming">Get concert updates</LinkCta>
               </div>
@@ -359,6 +445,7 @@ const About = () => {
           </section>
         </div>
       </section>
+      <hr className="about-page__separator" aria-hidden="true" />
       <div
         className="about-page__section-indicator"
         aria-hidden="true"
