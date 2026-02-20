@@ -43,7 +43,7 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   border: none;
-  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-image);
   overflow: hidden;
 }
 
