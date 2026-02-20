@@ -139,8 +139,11 @@ const About = () => {
           <section className="about-page__scroll-section" ref={setSectionRef(0)}>
             <div className="about-page__scroll-panel">
               <p className="about-page__lead">
-                Shoal Circle Chamber Orchestra is a community chamber ensemble for
-                adult amateur musicians of any level.
+                <span className="about-page__lead-emphasis">
+                  Shoal Circle Chamber Orchestra
+                </span>{" "}
+                is a community chamber ensemble for adult amateur musicians of
+                any level.
               </p>
               <p className="about-page__text">
                 Our mission is to create a space where adult musicians regardless

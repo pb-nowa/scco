@@ -143,6 +143,11 @@
   margin: 0;
 }
 
+.about-page__lead-emphasis {
+  font-size: var(--font-size-about-section);
+  font-weight: 700;
+}
+
 .about-page__text {
   margin: var(--space-4) 0 var(--space-6);
 }
