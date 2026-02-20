@@ -1,4 +1,5 @@
 .about-page {
+  --about-circle-size: clamp(320px, 46vw, 80vh);
   position: relative;
   background: var(--color-bg);
   overflow-x: clip;
@@ -20,8 +21,8 @@
 }
 
 .about-page__circle-frame {
-  width: clamp(320px, 46vw, 80vh);
-  height: clamp(320px, 46vw, 80vh);
+  width: var(--about-circle-size);
+  height: var(--about-circle-size);
   transform: translate(-50%, -50%) scale(var(--about-circle-frame-scale));
   border-radius: 999px;
   border: 1px solid var(--color-ink);
@@ -34,8 +35,8 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: clamp(320px, 46vw, 80vh);
-  height: clamp(320px, 46vw, 80vh);
+  width: var(--about-circle-size);
+  height: var(--about-circle-size);
   border-radius: 999px;
   border: 1px solid var(--color-ink);
   background: transparent;
@@ -214,15 +215,31 @@
   background: var(--color-ink);
 }
 
+@media (min-width: 901px) {
+  .about-page__lead,
+  .about-page__text,
+  .about-page__text--section-2 {
+    font-size: clamp(
+      calc(var(--font-size-about-section) * 0.95),
+      calc(var(--about-circle-size) * 0.037),
+      calc(var(--font-size-about-section) * 1.06)
+    );
+  }
+}
+
 @media (max-width: 900px) {
+  .about-page {
+    --about-circle-size: clamp(260px, 72vw, 520px);
+  }
+
   .about-page__circle-frame {
-    width: clamp(260px, 72vw, 520px);
-    height: clamp(260px, 72vw, 520px);
+    width: var(--about-circle-size);
+    height: var(--about-circle-size);
   }
 
   .about-page__circle-wave {
-    width: clamp(260px, 72vw, 520px);
-    height: clamp(260px, 72vw, 520px);
+    width: var(--about-circle-size);
+    height: var(--about-circle-size);
   }
 
   .about-page__content .layout__container {
