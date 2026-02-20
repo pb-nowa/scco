@@ -195,7 +195,7 @@
 .about-page__separator {
   width: 100vw;
   margin-left: calc(-50vw + 50%);
-  margin-top: var(--space-8);
+  margin-top: var(--space-5);
   margin-bottom: 0;
   border: none;
   border-top: 1px solid var(--color-ink);
