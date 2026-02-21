@@ -97,7 +97,7 @@
 }
 
 .about-page__content .layout__container {
-  max-width: min(400px, 80vw);
+  max-width: 30vw;
   margin-left: auto;
   margin-right: auto;
 }
@@ -128,7 +128,6 @@
   width: 45vw;
   max-width: none;
   margin: 0 0 var(--space-8);
-  border-radius: 2px;
   box-shadow: var(--shadow-image);
   position: relative;
   left: 50%;
@@ -236,36 +235,33 @@
   background: var(--color-ink);
 }
 
-.about-page__section-photos {
-  --about-section-photo-opacity: 0;
+.about-page__fixed-photos-wrapper {
   position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.about-page__fixed-photo {
+  --about-fixed-photo-opacity: 0;
+  --about-fixed-photo-parallax-y: 0;
+  --about-fixed-photo-x: 0;
+  --about-fixed-photo-y: 0;
+  --about-fixed-photo-size: clamp(180px, 15vw, 260px);
+  position: absolute;
   left: 50%;
   top: 50%;
-  width: 0;
-  height: 0;
-  z-index: 3;
-  opacity: var(--about-section-photo-opacity);
-  pointer-events: none;
-  transition: opacity 220ms linear;
-}
-
-.about-page__section-photo {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: clamp(180px, 15vw, 260px);
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
+  width: var(--about-fixed-photo-size);
+  height: auto;
   border-radius: 2px;
   box-shadow: var(--shadow-image);
-}
-
-.about-page__section-photo--left {
-  transform: translate(calc(-100% - clamp(4rem, 8vw, 7rem)), -50%);
-}
-
-.about-page__section-photo--right {
-  transform: translate(clamp(4rem, 8vw, 7rem), -50%);
+  opacity: var(--about-fixed-photo-opacity);
+  transform: translate(
+      calc(-50% + var(--about-fixed-photo-x, 0)),
+      calc(-50% + var(--about-fixed-photo-y, 0))
+    )
+    translateY(var(--about-fixed-photo-parallax-y, 0));
+  transition: opacity 380ms linear, transform 120ms linear;
 }
 
 @media (min-width: 901px) {
@@ -320,15 +316,4 @@
     bottom: var(--space-4);
   }
 
-  .about-page__section-photo {
-    width: clamp(120px, 22vw, 170px);
-  }
-
-  .about-page__section-photo--left {
-    transform: translate(calc(-100% - clamp(2rem, 5vw, 4rem)), -50%);
-  }
-
-  .about-page__section-photo--right {
-    transform: translate(clamp(2rem, 5vw, 4rem), -50%);
-  }
 }

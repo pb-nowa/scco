@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import LinkCta from "../components/LinkCta/LinkCta";
 import useScrollManager from "../hooks/useScrollManager";
 import { getScrollY } from "../utils/scrollPosition";
@@ -7,30 +8,43 @@ import "./About.css";
 const CLOUDINARY_BASE_URL =
   "https://res.cloudinary.com/dhjttb9y2/image/upload/f_auto,q_auto/";
 
-const SECTION_PHOTO_IDS = [
-  null,
-  ["IMG_0154_fsfcsa", "IMG_7702_q0vwni"],
-  ["IMG_7702_nyiojq", "IMG_0154_fsfcsa"],
-  ["IMG_6767_qmnto6", "IMG_6304_vblfjn"],
+/**
+ * Per-photo configuration for the About page scroll photos.
+ * @param {string} id - Cloudinary image ID (without extension)
+ * @param {number} sectionIndex - Section this photo belongs to (1, 2, or 3)
+ * @param {"left"|"right"} side - Which side of the text box (left = left of text, right = right of text)
+ * @param {number} startPositionX - Distance from the text box edge in px (positive = outward from text)
+ * @param {number} startPositionY - Distance from vertical center of viewport in px (positive = down)
+ * @param {number} scrollSpeed - Parallax multiplier (movement per px scrolled)
+ * @param {string} size - CSS width value (e.g. "22vw")
+ */
+const SECTION_PHOTOS = [
+  { id: "IMG_0156_oy8xfm", sectionIndex: 1, side: "left", startPositionX: 280, startPositionY: 550, scrollSpeed: 0.15, size: "20vw" },
+  { id: "IMG_7702_q0vwni", sectionIndex: 1, side: "right", startPositionX: 280, startPositionY: 100, scrollSpeed: 0.05, size: "24vw" },
+  { id: "IMG_6304_vblfjn", sectionIndex: 2, side: "left", startPositionX: 300, startPositionY: 350, scrollSpeed: 0.1, size: "24vw" },
+  { id: "IMG_0154_fsfcsa", sectionIndex: 2, side: "right", startPositionX: 265, startPositionY: 950, scrollSpeed: 0.2, size: "20vw" },
+  { id: "IMG_6767_qmnto6", sectionIndex: 3, side: "left", startPositionX: 350, startPositionY: 600, scrollSpeed: 0.08, size: "34vw" },
+  { id: "IMG_1371_hj1pao", sectionIndex: 3, side: "right", startPositionX: 295, startPositionY: 1050, scrollSpeed: 0.18, size: "28vw" },
 ];
 
 const About = () => {
   const sectionRefs = useRef([]);
-  const sectionPhotoRefs = useRef([]);
+  const fixedPhotoRefs = useRef([]);
+
+  const setFixedPhotoRef = useCallback((index) => (node) => {
+    fixedPhotoRefs.current[index] = node;
+  }, []);
   const titleRef = useRef(null);
   const circleRef = useRef(null);
   const introImageRef = useRef(null);
   const ctaRef = useRef(null);
+  const contentContainerRef = useRef(null);
   const sectionIndicatorRef = useRef(null);
   const activeSectionRef = useRef(1);
   const [activeSection, setActiveSection] = useState(1);
 
   const setSectionRef = useCallback((index) => (node) => {
     sectionRefs.current[index] = node;
-  }, []);
-
-  const setSectionPhotoRef = useCallback((index) => (node) => {
-    sectionPhotoRefs.current[index] = node;
   }, []);
 
   const rebuildTextLines = useCallback(() => {
@@ -194,18 +208,6 @@ const About = () => {
         });
       });
 
-      const sectionPhotoGroup = sectionPhotoRefs.current[index];
-      if (sectionPhotoGroup) {
-        const photoRevealProgress = Math.min(
-          1,
-          Math.max(0, progress / 0.16)
-        );
-        sectionPhotoGroup.style.setProperty(
-          "--about-section-photo-opacity",
-          photoRevealProgress.toFixed(3)
-        );
-      }
-
       if (index === 3 && ctaRef.current) {
         const ctaRevealProgress = Math.min(
           1,
@@ -229,6 +231,68 @@ const About = () => {
       activeSectionRef.current = nextActiveSection;
       setActiveSection(nextActiveSection);
     }
+
+    const section2 = sectionRefs.current[1];
+    const section3 = sectionRefs.current[2];
+    const section4 = sectionRefs.current[3];
+    const viewportHeight = window.innerHeight || 0;
+
+    const getProgress = (section) => {
+      if (!section) return 0;
+      const rect = section.getBoundingClientRect();
+      return Math.min(1, Math.max(0, (viewportHeight - rect.top) / rect.height));
+    };
+
+    const progress2 = getProgress(section2);
+    const progress3 = getProgress(section3);
+    const progress4 = getProgress(section4);
+    const threshold = 0.08;
+    const fadeDuration = 0.2;
+
+    let pair1Opacity = 0;
+    let pair2Opacity = 0;
+    let pair3Opacity = 0;
+    if (progress4 > threshold) {
+      const fadeIn = Math.min(1, (progress4 - threshold) / fadeDuration);
+      pair2Opacity = Math.max(0, 1 - fadeIn);
+      pair3Opacity = fadeIn;
+      const ctaRevealProgress = Math.min(
+        1,
+        Math.max(0, (progress4 - 0.78) / 0.16)
+      );
+      pair3Opacity *= 1 - ctaRevealProgress;
+    } else if (progress3 > threshold) {
+      const fadeProgress = Math.min(1, (progress3 - threshold) / fadeDuration);
+      pair1Opacity = 0;
+      pair2Opacity = fadeProgress;
+    } else if (progress2 > threshold) {
+      pair1Opacity = Math.min(1, (progress2 - threshold) / fadeDuration);
+    }
+
+    const sectionOpacities = [pair1Opacity, pair2Opacity, pair3Opacity];
+    const contentContainer = contentContainerRef.current;
+    const textBoxHalfWidth = contentContainer
+      ? contentContainer.getBoundingClientRect().width * 0.5
+      : 200;
+
+    SECTION_PHOTOS.forEach((photo, index) => {
+      const el = fixedPhotoRefs.current[index];
+      if (el) {
+        const opacity = sectionOpacities[photo.sectionIndex - 1];
+        el.style.setProperty("--about-fixed-photo-opacity", opacity.toFixed(3));
+        el.style.setProperty(
+          "--about-fixed-photo-parallax-y",
+          `${-scrollY * photo.scrollSpeed}px`
+        );
+
+        const offsetX =
+          photo.side === "left"
+            ? -(textBoxHalfWidth + photo.startPositionX)
+            : textBoxHalfWidth + photo.startPositionX;
+        el.style.setProperty("--about-fixed-photo-x", `${offsetX}px`);
+        el.style.setProperty("--about-fixed-photo-y", `${photo.startPositionY}px`);
+      }
+    });
 
     const introImage = introImageRef.current;
     if (introImage) {
@@ -284,6 +348,8 @@ const About = () => {
       return;
     }
 
+    updateSectionFade();
+
     sectionRefs.current.forEach((section) => {
       section?.style.setProperty("--about-section-opacity", "1");
       const sectionTextElements = section?.querySelectorAll(".about-page__text");
@@ -294,11 +360,18 @@ const About = () => {
         });
       });
     });
-    sectionPhotoRefs.current.forEach((photoGroup) => {
-      photoGroup?.style.setProperty("--about-section-photo-opacity", "1");
-    });
     activeSectionRef.current = 1;
     setActiveSection(1);
+    SECTION_PHOTOS.forEach((photo, index) => {
+      const el = fixedPhotoRefs.current[index];
+      if (el) {
+        el.style.setProperty("--about-fixed-photo-parallax-y", "0");
+        el.style.setProperty(
+          "--about-fixed-photo-opacity",
+          photo.sectionIndex === 1 ? "1" : "0"
+        );
+      }
+    });
     ctaRef.current?.style.setProperty("--about-cta-opacity", "1");
     sectionIndicatorRef.current?.style.setProperty(
       "--about-section-indicator-opacity",
@@ -332,7 +405,7 @@ const About = () => {
         </div>
       </section>
       <section className="about-page__content">
-        <div className="layout__container">
+        <div className="layout__container" ref={contentContainerRef}>
           <img
             ref={introImageRef}
             className="about-page__intro-image"
@@ -363,22 +436,6 @@ const About = () => {
                 music together in their living room. What started informally has grown into an annual community
                 concert shaped entirely by amateur musicians.
               </p>
-              <div
-                className="about-page__section-photos"
-                ref={setSectionPhotoRef(1)}
-                aria-hidden="true"
-              >
-                <img
-                  className="about-page__section-photo about-page__section-photo--left"
-                  src={`${CLOUDINARY_BASE_URL}${SECTION_PHOTO_IDS[1][0]}.jpg`}
-                  alt=""
-                />
-                <img
-                  className="about-page__section-photo about-page__section-photo--right"
-                  src={`${CLOUDINARY_BASE_URL}${SECTION_PHOTO_IDS[1][1]}.jpg`}
-                  alt=""
-                />
-              </div>
             </div>
           </section>
 
@@ -392,22 +449,6 @@ const About = () => {
                 film music, Latin styles, and other genres depending on the
                 group&apos;s unique combination of instruments and skill levels.
               </p>
-              <div
-                className="about-page__section-photos"
-                ref={setSectionPhotoRef(2)}
-                aria-hidden="true"
-              >
-                <img
-                  className="about-page__section-photo about-page__section-photo--left"
-                  src={`${CLOUDINARY_BASE_URL}${SECTION_PHOTO_IDS[2][0]}.jpg`}
-                  alt=""
-                />
-                <img
-                  className="about-page__section-photo about-page__section-photo--right"
-                  src={`${CLOUDINARY_BASE_URL}${SECTION_PHOTO_IDS[2][1]}.jpg`}
-                  alt=""
-                />
-              </div>
             </div>
           </section>
 
@@ -421,22 +462,6 @@ const About = () => {
                 a community performance open to friends, families, and community
                 members.
               </p>
-              <div
-                className="about-page__section-photos"
-                ref={setSectionPhotoRef(3)}
-                aria-hidden="true"
-              >
-                <img
-                  className="about-page__section-photo about-page__section-photo--left"
-                  src={`${CLOUDINARY_BASE_URL}${SECTION_PHOTO_IDS[3][0]}.jpg`}
-                  alt=""
-                />
-                <img
-                  className="about-page__section-photo about-page__section-photo--right"
-                  src={`${CLOUDINARY_BASE_URL}${SECTION_PHOTO_IDS[3][1]}.jpg`}
-                  alt=""
-                />
-              </div>
               <div className="about-page__cta" ref={ctaRef}>
                 <LinkCta href="#upcoming">Get concert updates</LinkCta>
               </div>
@@ -454,6 +479,26 @@ const About = () => {
         <span className="about-page__section-indicator-line" />
         <span className="about-page__section-indicator-bottom">4</span>
       </div>
+      {typeof document !== "undefined" &&
+        createPortal(
+          <div className="about-page__fixed-photos-wrapper" aria-hidden="true">
+            {SECTION_PHOTOS.map((photo, index) => (
+              <img
+                key={`${photo.sectionIndex}-${photo.id}-${index}`}
+                ref={setFixedPhotoRef(index)}
+                className="about-page__fixed-photo"
+                src={`${CLOUDINARY_BASE_URL}${photo.id}.jpg`}
+                alt=""
+                style={{
+                  "--about-fixed-photo-opacity": 0,
+                  "--about-fixed-photo-parallax-y": "0",
+                  "--about-fixed-photo-size": photo.size,
+                }}
+              />
+            ))}
+          </div>,
+          document.body
+        )}
     </main>
   );
 };
