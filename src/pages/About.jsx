@@ -42,6 +42,7 @@ const About = () => {
   const sectionIndicatorRef = useRef(null);
   const activeSectionRef = useRef(1);
   const [activeSection, setActiveSection] = useState(1);
+  const [introImageLoaded, setIntroImageLoaded] = useState(false);
 
   const setSectionRef = useCallback((index) => (node) => {
     sectionRefs.current[index] = node;
@@ -406,12 +407,16 @@ const About = () => {
       </section>
       <section className="about-page__content">
         <div className="layout__container" ref={contentContainerRef}>
-          <img
-            ref={introImageRef}
-            className="about-page__intro-image"
-            src="https://res.cloudinary.com/dhjttb9y2/image/upload/f_auto,q_auto/IMG_1368_bvblq7.jpg"
-            alt="Shoal Circle Chamber Orchestra musicians rehearsing"
-          />
+          <div className="about-page__intro-image-wrap">
+            <img
+              ref={introImageRef}
+              className="about-page__intro-image"
+              src="https://res.cloudinary.com/dhjttb9y2/image/upload/f_auto,q_auto/IMG_1368_bvblq7.jpg"
+              alt="Shoal Circle Chamber Orchestra musicians rehearsing"
+              onLoad={() => setIntroImageLoaded(true)}
+              style={{ "--about-intro-image-loaded": introImageLoaded ? 1 : 0 }}
+            />
+          </div>
           <section className="about-page__scroll-section" ref={setSectionRef(0)}>
             <div className="about-page__scroll-panel">
               <p className="about-page__lead">
