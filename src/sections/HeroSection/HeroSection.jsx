@@ -115,7 +115,7 @@ const HeroSection = () => {
               </div>
             </div>
             <div className="hero__cta">
-              <LinkCta href="#upcoming">Get concert updates</LinkCta>
+              <LinkCta href="/contact">Get concert updates</LinkCta>
             </div>
           </div>
         </div>

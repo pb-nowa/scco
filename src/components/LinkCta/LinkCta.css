@@ -5,6 +5,16 @@
   font-size: var(--font-size-lg);
   text-transform: uppercase;
   position: relative;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button.cta {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
 }
 
 .cta__icon {

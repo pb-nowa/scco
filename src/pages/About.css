@@ -123,7 +123,7 @@
 }
 
 .about-page__intro-image-wrap {
-  background: var(--color-bg);
+  background: transparent;
   margin: 0 0 var(--space-8);
   position: relative;
   left: 50%;
@@ -196,17 +196,6 @@
   opacity: var(--about-cta-opacity);
   transition: opacity 220ms linear;
   text-align: center;
-}
-
-.about-page__separator {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-top: var(--space-5);
-  margin-bottom: 0;
-  border: none;
-  border-top: 1px solid var(--color-ink);
-  position: relative;
-  z-index: 2;
 }
 
 .about-page__section-indicator {

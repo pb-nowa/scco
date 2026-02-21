@@ -411,10 +411,10 @@ const About = () => {
             <img
               ref={introImageRef}
               className="about-page__intro-image"
+              style={{ "--about-intro-image-loaded": introImageLoaded ? 1 : 0 }}
               src="https://res.cloudinary.com/dhjttb9y2/image/upload/f_auto,q_auto/IMG_1368_bvblq7.jpg"
               alt="Shoal Circle Chamber Orchestra musicians rehearsing"
               onLoad={() => setIntroImageLoaded(true)}
-              style={{ "--about-intro-image-loaded": introImageLoaded ? 1 : 0 }}
             />
           </div>
           <section className="about-page__scroll-section" ref={setSectionRef(0)}>
@@ -468,13 +468,13 @@ const About = () => {
                 members.
               </p>
               <div className="about-page__cta" ref={ctaRef}>
-                <LinkCta href="#upcoming">Get concert updates</LinkCta>
+                <LinkCta href="/contact">Get concert updates</LinkCta>
               </div>
             </div>
           </section>
         </div>
       </section>
-      <hr className="about-page__separator" aria-hidden="true" />
+      <hr className="page-separator" aria-hidden="true" />
       <div
         className="about-page__section-indicator"
         aria-hidden="true"

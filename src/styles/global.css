@@ -51,6 +51,15 @@ main {
   padding: var(--space-4) 0;
 }
 
+.page-separator {
+  width: 100%;
+  margin: var(--space-5) 0 0;
+  border: none;
+  border-top: 1px solid var(--color-ink);
+  position: relative;
+  z-index: 2;
+}
+
 #contact {
   scroll-margin-top: 6rem;
 }

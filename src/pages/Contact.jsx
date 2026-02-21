@@ -1,4 +1,5 @@
 import { useState } from "react";
+import LinkCta from "../components/LinkCta/LinkCta";
 import "./Contact.css";
 
 const Contact = () => {
@@ -18,6 +19,9 @@ const Contact = () => {
 
   return (
     <main className="contact-page">
+      <section className="contact-page__hero section">
+        <h1 className="contact-page__title">Stay in the Loop</h1>
+      </section>
       <section className="contact-page__forms section">
         <div className="layout__container">
           <div className="contact-page__forms-grid section-split__grid">
@@ -28,10 +32,10 @@ const Contact = () => {
                 aria-labelledby="newsletter-heading"
               >
                 <h2 id="newsletter-heading" className="contact-form__heading section-heading">
-                  Stay Connected
+                  Join our mailing list
                 </h2>
                 <p className="contact-form__description">
-                  Stay tuned for performances, releases, and news.
+                  Stay tuned for performance updates and news.
                 </p>
                 <div className="contact-form__row">
                   <input
@@ -43,10 +47,14 @@ const Contact = () => {
                     required
                     aria-label="Email address"
                   />
-                  <button type="submit" className="contact-form__submit contact-form__submit--newsletter">
-                    Subscribe
-                  </button>
                 </div>
+                <LinkCta
+                  as="button"
+                  type="submit"
+                  className="cta--feature contact-form__submit"
+                >
+                  Join the Mailing List
+                </LinkCta>
               </form>
             </div>
             <div className="section-split__right">
@@ -56,7 +64,7 @@ const Contact = () => {
                 aria-labelledby="contact-heading"
               >
                 <h2 id="contact-heading" className="contact-form__heading section-heading">
-                  Contact us
+                  Send us a note
                 </h2>
                 <input
                   type="email"
@@ -76,15 +84,20 @@ const Contact = () => {
                   rows={5}
                   aria-label="Message"
                 />
-                <button type="submit" className="contact-form__submit contact-form__submit--contact">
-                  Submit
-                </button>
+                <LinkCta
+                  as="button"
+                  type="submit"
+                  className="cta--feature contact-form__submit"
+                >
+                  send a note
+                </LinkCta>
               </form>
             </div>
           </div>
         </div>
       </section>
-  </main>
+      <hr className="page-separator" aria-hidden="true" />
+    </main>
   );
 };
 

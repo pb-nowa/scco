@@ -22,7 +22,7 @@ const FeatureCard = () => {
         Program and concert title are TBD. Details to RSVP will be released in
         October 2026.
       </p>
-      <LinkCta className="cta--feature" href="#upcoming">
+      <LinkCta className="cta--feature" href="/contact">
         Get concert updates
       </LinkCta>
     </article>
