@@ -76,6 +76,12 @@
   text-transform: none;
 }
 
+.site-footer__credit {
+  font-size: var(--font-size-sm);
+  color: var(--color-ink);
+  text-transform: none;
+}
+
 .site-footer__nav {
   display: flex;
   gap: var(--space-4);
